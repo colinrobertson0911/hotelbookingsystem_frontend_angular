@@ -7,7 +7,7 @@ import { PropertyWrite } from '@angular/compiler';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'HotelFrontEnd';
+  title = 'Hotel Booking';
 
   displayRegister = false;
 
