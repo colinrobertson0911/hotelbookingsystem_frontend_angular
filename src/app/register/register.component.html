@@ -3,11 +3,11 @@
 
 
 <div>
-  <form #userForm="ngForm" novalidate>
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
   <div>
     <label>Name</label>
     <input name="username" required #username="ngModel" [class.is-invalid]="username.invalid && username.touched"
-    class="form-control" type="text" [(ngModel)]="registrationForm.username">
+    class="form-control" type="text" [ngModel]="registrationForm.username">
     
     <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required</small>
   </div>
@@ -15,16 +15,16 @@
   <div>
     <label>Email</label>
     <input name="email" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched"
-    class="form-control" type="text" [(ngModel)]= "registrationForm.email">
+    class="form-control" type="text" [ngModel]= "registrationForm.email">
   <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
   </div>
 
   <div>
     <label>Password</label>
     <input name="password" required #password="ngModel" [class.is-invalid]="password.invalid && password.touched"
-    class="form-control" type="text" [(ngModel)]="registrationForm.password">
+    class="form-control" type="text" [ngModel]="registrationForm.password">
     <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is Required</small> 
   </div>
 
 
-  <div><button [disabled]="userForm.form.invallid" class="btn btn-primary" type="submit">Register</button></div>
+  <div><button [disabled]="userForm.form.invallid || username.untouched || email.untouched || password.untouched" class="btn btn-primary" type="submit">Register</button></div>

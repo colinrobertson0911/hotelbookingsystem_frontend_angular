@@ -4,4 +4,6 @@ export class RegistrationForm {
         public email : string,
         public password : string
     ) {}
+
+    
 }
