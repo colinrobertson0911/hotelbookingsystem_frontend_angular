@@ -1,8 +1,8 @@
-<div>
-<p> 
+<div class="container">
+<h2> 
 {{ hotel.Name }} <button (click)="onDetailsClick()" class="btn btn-primary">details</button> 
-{{ details }} </p>
-<li *ngIf="details" > the details: {{ hotel.otherData }} </li>
+</h2>
+<div class="d-flex" *ngIf="details" > the details: {{ hotel.otherData }} </div>
 </div>
 
 

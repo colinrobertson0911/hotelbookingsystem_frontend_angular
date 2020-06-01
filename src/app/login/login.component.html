@@ -1,6 +1,6 @@
 <button class="btn btn-primary" routerLink="/landing">Home</button>
 <h1>User Login</h1>
-<div><form #LoginForm="ngForm" (ngSubmit)="onSubmit(LoginForm)" novalidate>
+<div class="container"><form #LoginForm="ngForm" (ngSubmit)="onSubmit(LoginForm)" novalidate>
 
     <label>Username</label>
       <input name="username" required #username="ngModel" type="text"

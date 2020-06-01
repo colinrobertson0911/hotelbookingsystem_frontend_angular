@@ -1,7 +1,9 @@
+
 <button class="btn btn-primary" routerLink="/landing">Home</button>
 <h1>List of Hotels</h1>
 
-<br>
 
-
+<div class="container">
 <app-hotel-item *ngFor="let hotel of hotels" [hotel]="hotel"></app-hotel-item>
+</div>
+
