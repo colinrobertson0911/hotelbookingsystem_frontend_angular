@@ -1,12 +1,17 @@
-<button routerLink="/landing">Home</button>
+<button class="btn btn-primary" routerLink="/landing">Home</button>
 <h1>User Login</h1>
-<div><form>
-    <label for="fname">Username:</label><br>
-      <input type="text"><br><br>
-    <label for="fname">Password:</label><br>
-      <input type="text"><br>
-  </form></div>
+<div><form #LoginForm="ngForm" (ngSubmit)="onSubmit(LoginForm)" novalidate>
 
-  <br>
+    <label>Username</label>
+      <input name="username" required #username="ngModel" type="text"
+      class="form-control" [(ngModel)]="login.username">
 
-  <div><button>Login</button></div>
+
+    <label>Password</label>
+      <input name="password" required #password="ngModel" type="text"
+      class="form-control" [(ngModel)]="login.password">
+
+
+  <div><button [disabled]="LoginForm.invalid || username.untouched || password.untouched" class="btn btn-primary" 
+    type="submit">Login</button></div>
+</form></div>
