@@ -1,4 +1,4 @@
-<button routerLink="/landing">Home</button>
+<button class="btn btn-primary" routerLink="/landing">Home</button>
 <h1>User Register</h1>
 
 
@@ -27,4 +27,4 @@
   </div>
 
 
-  <div><button [disabled]="userForm.form.invallid || username.untouched || email.untouched || password.untouched" class="btn btn-primary" type="submit">Register</button></div>
+  <div><button [disabled]="userForm.form.invalid || username.untouched || email.untouched || password.untouched" class="btn btn-primary" type="submit">Register</button></div>
