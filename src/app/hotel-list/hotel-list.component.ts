@@ -20,10 +20,10 @@ export class HotelListComponent implements OnInit {
     // let resp = this._http.get(backend_url);
     // resp.subscribe(result => this.hotels = result as Hotel[])
 
-    this.hotels = [{"Name": "data"},
-                    {"Name":"the ritz"},
-                    {"Name":"the  balmoral"},
-                    {"Name":"the savoy"}
+    this.hotels = [{"Name": "data", "otherData": "stuff"},
+                    {"Name":"the ritz", "otherData": "stuff"},
+                    {"Name":"the  balmoral", "otherData": "stuff"},
+                    {"Name":"the savoy", "otherData": "stuff"}
   ]
 
 }

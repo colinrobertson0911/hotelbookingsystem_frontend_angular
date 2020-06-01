@@ -1,1 +1,8 @@
-<p> {{ hotel.Name }}</p>
+<div>
+<p> 
+{{ hotel.Name }} <button (click)="onDetailsClick()" class="btn btn-primary">details</button> 
+{{ details }} </p>
+<li *ngIf="details" > the details: {{ hotel.otherData }} </li>
+</div>
+
+

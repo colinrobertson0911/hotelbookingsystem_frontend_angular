@@ -10,9 +10,14 @@ export class HotelItemComponent implements OnInit {
 
   @Input() hotel : Hotel;
 
+  details = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onDetailsClick(){
+    this.details = !this.details;
   }
 
 }
