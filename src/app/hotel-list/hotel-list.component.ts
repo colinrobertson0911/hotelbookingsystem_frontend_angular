@@ -17,7 +17,7 @@ export class HotelListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let backend_url = "http://localhost:8088/hotelbookingsystem/hotelbookingsystem/admin/AllHotels/";
+    let backend_url = "http://localhost:8088/hotelbookingsystem/admin/AllHotels/";
     let resp = this._http.get(backend_url);
     resp.subscribe(result => this.hotels = result as Hotel[],
                   error => console.log("hotel list GET call failed ", error))
