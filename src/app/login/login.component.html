@@ -1,4 +1,3 @@
-<button class="btn btn-primary" routerLink="/landing">Home</button>
 <h1>User Login</h1>
 <div class="container"><form #LoginForm="ngForm" (ngSubmit)="onSubmit(LoginForm)" novalidate>
 
@@ -15,3 +14,9 @@
   <div><button [disabled]="LoginForm.invalid || username.untouched || password.untouched" class="btn btn-primary" 
     type="submit">Login</button></div>
 </form></div>
+<br>
+<div>
+  <p>Dont have an account? Sign up here</p>
+  <br>
+  <button class="btn btn-primary" routerLink ="/register">Register</button>
+</div>  
