@@ -10,7 +10,7 @@
 
 <div>
     <h3>Searched hotels:</h3>
-    <p>{{ hotels }}</p>
+    <p *ngFor="let hotel of hotels">{{ hotel.hotelName }}</p>
     <h3>Found hotels:</h3>
     <p> {{ foundHotels }} </p>
     <h3>Searched query:</h3>
