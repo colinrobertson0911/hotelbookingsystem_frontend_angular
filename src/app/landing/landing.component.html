@@ -1,9 +1,33 @@
 
-<h1>Welcome to the Hotel Booking site!</h1>
+<div><h1>Welcome to the Hotel Booking site!</h1></div>
+
+
+<div class="col-xs-12">
+<h3>Search for a hotel</h3>
+<input type="text" class="form-control" (input)="saveQuery($event)">
+<br>
+<button class="btn btn-primary" (click)="searchHotels(searchedQuery)">Search</button>
+
+<div>
+    <h3>Searched hotels:</h3>
+    <p *ngFor="let hotel of hotels">{{ hotel.hotelName }}</p>
+    <h3>Found hotels:</h3>
+    <p> {{ foundHotels }} </p>
+    <h3>Searched query:</h3>
+    <p>{{ searchedQuery }}</p>
+</div>
+    
+
+</div>
+<hr>
 <nav>
-<button class="btn btn-primary" routerLink="/hotel-list">View Hotels</button>
-<br><br>
-<button class="btn btn-primary" routerLink ="/register">Register</button>
-&nbsp;
-<button class="btn btn-primary" routerLink ="/login">Login</button>
+<div class="col-xs-12">
+
+    <button class="btn btn-primary" routerLink="/hotel-list">View Hotels</button>
+    <br><br>
+    <button class="btn btn-primary" routerLink ="/register">Register</button>
+    &nbsp;
+    <button class="btn btn-primary" routerLink ="/login">Login</button>
+
+</div>
 </nav>
