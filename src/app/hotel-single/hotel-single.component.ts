@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Hotel } from 'src/app/models/hotel';
 
 @Component({
@@ -10,9 +11,17 @@ export class HotelSingleComponent implements OnInit {
 
   @Input() hotel : Hotel;
 
-  constructor() { }
+  selectedHotel : Hotel[];
+  
+
+  constructor(private _http : HttpClient) { }
+
 
   ngOnInit(): void {
-  }
 
+    let backend_url = `http://localhost:8088/hotelbookingsystem/hotel/SeeHotel/${selectedHotel.hotelId}`;
+    let resp = this._http.get(backend_url);
+    resp.subscribe(result => this.selectedHotel = result as Hotel[],
+                  error => console.log("selected hotel call FAILED ", error))
+  }
 }
