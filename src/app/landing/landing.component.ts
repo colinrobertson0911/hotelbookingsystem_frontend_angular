@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Hotel } from 'src/app/models/hotel';
+import { Room } from 'src/app/models/room';
 
 @Component({
   selector: 'app-landing',
@@ -10,6 +11,7 @@ import { Hotel } from 'src/app/models/hotel';
 export class LandingComponent implements OnInit {
 
   @Input() hotel : Hotel[];
+  @Input() room : Room[];
   @Input() foundHotel : Hotel[];
 
   hotels : Hotel[];
@@ -21,9 +23,9 @@ export class LandingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let backend_url = "http://localhost:8088/hotelbookingsystem/admin/AllHotels/";
-    let resp = this._http.get(backend_url);
-    resp.subscribe(result => this.hotels = result as Hotel[],
+    let allHotels = "http://localhost:8088/hotelbookingsystem/admin/AllHotels/";
+    let allHotelsResp = this._http.get(allHotels);
+    allHotelsResp.subscribe(allHotelsResult => this.hotels = allHotelsResult as Hotel[],
                   error => console.log("hotel list GET call failed ", error))
 
 }
@@ -41,10 +43,17 @@ export class LandingComponent implements OnInit {
 
         this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase() === searchedQuery.toLowerCase());
 
-      }
+    // } else {
 
-      return this.foundHotels;
+    //   let searchByRoomType = `http://localhost:8088/hotelbookingsystem/hotel/SearchByRoomType/${searchedQuery}`;
+    //   searchByRoomTypeResp = this._http.get(searchByRoomType);
+    //   searchByRoomTypeResp.subscribe(searchByRoomTypeResult => this.hotels = searchByRoomTypeResult as Hotel[],
+    //                 error => console.log("Hotels by rooms GET call failed ", error))
 
+    // }
 
-      }
+    return this.foundHotels;
+
   }
+}
+}
