@@ -33,7 +33,7 @@ export class LandingComponent implements OnInit {
   }
 
   searchHotels(searchedQuery) {
-
+      console.log("found hotels = ", this.hotels.filter(hotel => hotel.city === searchedQuery))
       return this.foundHotels = this.hotels.filter(hotel => hotel.city === searchedQuery);
 
       }

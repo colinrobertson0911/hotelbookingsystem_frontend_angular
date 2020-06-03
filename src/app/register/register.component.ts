@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationForm } from '../models/registration-form';
 import { NgForm } from '@angular/forms';
-import { RegistrationServiceService } from '../services/registration-service.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   registrationForm = new RegistrationForm('', '', '');
   userSubmission;
 
-  constructor(private _registrationService : RegistrationServiceService) { }
+  constructor(private _auth : AuthenticationService) { }
 
 
   ngOnInit(): void {
@@ -28,13 +28,11 @@ export class RegisterComponent implements OnInit {
        userForm.value.password)
     console.log(this.userSubmission)
 
-
+    
     //the below only works on my (simon's) setup using a node server to act as a fake
     //back end 
 
-    // this._registrationService.register_new_user(this.userSubmission)
-    // .subscribe(data => console.log("whoop!", data),
-    // error => console.log("error", error))
+    this._auth.register_new_user(this.userSubmission)
 
   }
 

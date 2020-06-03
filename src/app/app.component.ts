@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PropertyWrite } from '@angular/compiler';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +10,7 @@ import { PropertyWrite } from '@angular/compiler';
 export class AppComponent {
   title = 'Hotel Booking';
 
-  displayRegister = false;
+  displayRegister = false
 
   onPress() {
     this.displayRegister = true;

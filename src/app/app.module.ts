@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AuthGuard } from './services/auth.guard';
+import { BookingsComponent } from './bookings/bookings.component';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     LandingComponent,
     HotelListComponent,
     HotelItemComponent,
-    MainNavComponent
+    MainNavComponent,
+    BookingsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatListModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [AuthGuard, AuthenticationService, 
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
