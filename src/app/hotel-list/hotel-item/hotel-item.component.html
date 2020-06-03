@@ -1,7 +1,7 @@
 <div class="container">
 <h2> 
 {{ hotel.hotelName }} <button (click)="onDetailsClick()" class="btn btn-primary">details</button>
-<button class="btn btn-primary" routerLink ="/hotel-single/{{hotel.hotelId}}">View</button>
+<button class="btn btn-primary" (click)="onClickToPage(hotel.hotelId)" >View</button>
 </h2>
 <div class="d-flex flex-column" *ngIf="details" > the details: 
 <ul> 
