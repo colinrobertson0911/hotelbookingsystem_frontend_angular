@@ -19,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HotelSingleComponent } from './hotel-single/hotel-single.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     LandingComponent,
     HotelListComponent,
     HotelItemComponent,
-    MainNavComponent
+    MainNavComponent,
+    HotelSingleComponent
   ],
   imports: [
     BrowserModule,

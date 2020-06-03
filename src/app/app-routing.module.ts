@@ -5,6 +5,7 @@ import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
+import { HotelSingleComponent } from './hotel-single/hotel-single.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'landing', component: LandingComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'hotel-list', component: HotelListComponent}
+  { path: 'hotel-list', component: HotelListComponent},
+  { path: 'hotel-single', component: HotelSingleComponent}
 ];
 
 @NgModule({
