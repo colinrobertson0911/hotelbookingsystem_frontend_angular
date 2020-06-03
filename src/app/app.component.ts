@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PropertyWrite } from '@angular/compiler';
+import { AuthenticationService } from './services/authentication.service';
 
 
 @Component({
