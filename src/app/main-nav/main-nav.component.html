@@ -9,7 +9,11 @@
       <a mat-list-item *ngIf="!_auth.loggedOn()"  href="/login">Account</a>
       <a mat-list-item *ngIf="_auth.loggedOn()" (click)="_auth.logout()" >Logout</a>
       <a mat-list-item href="/hotel-list">Hotel List</a>
+<<<<<<< HEAD
       <a mat-list-item href="/bookings">Bookings</a>
+=======
+      <a mat-list-item href="/hotel-list">Available Hotels</a>
+>>>>>>> 676aa61e10b641ccd39f66c2f94dea91650267dd
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

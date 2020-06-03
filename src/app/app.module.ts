@@ -23,6 +23,7 @@ import { AuthGuard } from './services/auth.guard';
 import { BookingsComponent } from './bookings/bookings.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { AuthenticationService } from './services/authentication.service';
+import { HotelSingleComponent } from './hotel-single/hotel-single.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthenticationService } from './services/authentication.service';
     HotelListComponent,
     HotelItemComponent,
     MainNavComponent,
-    BookingsComponent
+    BookingsComponent,
+    HotelSingleComponent
   ],
   imports: [
     BrowserModule,

@@ -9,10 +9,8 @@
 <button class="btn btn-primary" (click)="searchHotels(searchedQuery)">Search</button>
 
 <div>
-    <h3>Searched hotels:</h3>
-    <p *ngFor="let hotel of hotels">{{ hotel.hotelName }}</p>
     <h3>Found hotels:</h3>
-    <p> {{ foundHotels }} </p>
+    <p *ngFor="let hotel of foundHotels">{{ hotel.hotelName }} <br> {{ hotel.city }}</p>
     <h3>Searched query:</h3>
     <p>{{ searchedQuery }}</p>
 </div>

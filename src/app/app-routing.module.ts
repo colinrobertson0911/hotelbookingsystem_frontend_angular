@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
 import { AuthGuard } from './services/auth.guard';
 import { BookingsComponent } from './bookings/bookings.component';
+import { HotelSingleComponent } from './hotel-single/hotel-single.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
   { path: 'hotel-list', component: HotelListComponent},
-  { path: 'bookings', component: BookingsComponent, canActivate : [AuthGuard]}
+  { path: 'bookings', component: BookingsComponent, canActivate : [AuthGuard]},
+  { path: 'hotel-single', component: HotelSingleComponent}
 ];
 
 @NgModule({
