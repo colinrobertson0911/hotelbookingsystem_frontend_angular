@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'hotel-list', component: HotelListComponent},
   { path: 'bookings', component: BookingsComponent, canActivate : [AuthGuard]},
-  { path: 'hotel-single', component: HotelSingleComponent}
+  { path: 'hotel-single/:{{hotel.hotelId}}', component: HotelSingleComponent}
 ];
 
 @NgModule({
