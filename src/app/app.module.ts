@@ -49,7 +49,7 @@ import { HotelSingleComponent } from './hotel-single/hotel-single.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   providers: [AuthGuard, AuthenticationService, 
   {
