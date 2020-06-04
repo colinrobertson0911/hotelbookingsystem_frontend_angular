@@ -1,13 +1,12 @@
 <div class="container">
 <h2> 
-{{ hotel.hotelName }} <button (click)="onDetailsClick()" class="btn btn-primary">details</button>
-<button class="btn btn-primary" (click)="onClickToPage(hotel.hotelId)" >View</button>
+<a class="nav-link" (click)="onClickToPage(hotel.hotelId)">{{hotel.hotelName}}</a>
 </h2>
-<div class="d-flex flex-column" *ngIf="details" > the details: 
+<div>  
 <ul> 
-    <li> number of Rooms {{ hotel.numOfRooms }} </li>
-    <li> address : {{ hotel.address }} </li>
-    <li> starRating : {{ hotel.starRating }} </li> 
+    <li> Rooms Available: {{ hotel.numOfRooms }} </li>
+    <li> Address : {{ hotel.address }} </li>
+    <li> Rating : {{ hotel.starRating }} </li> 
 </ul>
 </div>
 </div>
