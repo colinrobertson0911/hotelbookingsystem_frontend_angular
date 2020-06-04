@@ -1,12 +1,7 @@
 <div class="container">
-
-<a  class="nav-link" 
-    style=  "color:royalblue; 
-            font-weight: bold; 
-            text-decoration:underline; 
-            font-size: larger;" 
-    (click)="onClickToPage(hotel.hotelId)">{{hotel.hotelName}}</a>
-
+<h2> 
+<a class="nav-link" routerLink="/hotel-single/{{hotel.hotelId}}" (click)="onClickToPage(hotel.hotelId)">{{hotel.hotelName}}</a>
+</h2>
 <div>  
 <ul> 
     <li> Rooms Available: {{ hotel.numOfRooms }} </li>

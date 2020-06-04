@@ -44,6 +44,10 @@ export class LandingComponent implements OnInit {
       this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase() === searchedQuery.toLowerCase());
     
     }
+
+    if(this.foundHotels.length == 0) {
+      this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase().includes(searchedQuery.toLowerCase()));
+    }
     if (this.foundHotels.length == 0) {
       console.log("room type : ", searchedQuery.toString())
       let searchByRoomType = `http://localhost:8088/hotelbookingsystem/hotel/SearchByRoomType/${searchedQuery.toUpperCase()}`;
@@ -53,6 +57,7 @@ export class LandingComponent implements OnInit {
                                      error => console.log("error with room type GET request,", error))
 
     }
+
 
     // return this.foundHotels;
 
