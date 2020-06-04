@@ -35,25 +35,27 @@ export class LandingComponent implements OnInit {
   }
 
   searchHotels(searchedQuery) {
+    console.log("searched query entered with : ", searchedQuery)
 
+    this.foundHotels = this.hotels.filter(hotel => hotel.city.toLowerCase() === searchedQuery.toLowerCase());
+    console.log("found hotels : ", this.foundHotel)
+    if (this.foundHotels.length == 0) {
 
-      this.foundHotels = this.hotels.filter(hotel => hotel.city.toLowerCase() === searchedQuery.toLowerCase());
+      this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase() === searchedQuery.toLowerCase());
+    
+    }
+    if (this.foundHotels.length == 0) {
+      console.log("room type : ", searchedQuery.toString())
+      let searchByRoomType = `http://localhost:8088/hotelbookingsystem/hotel/SearchByRoomType/${searchedQuery.toUpperCase()}`;
+      let searchByRoomTypeResp = this._http.get(searchByRoomType);
+      searchByRoomTypeResp.subscribe(searchByRoomTypeResult => (this.foundHotels = searchByRoomTypeResult as Hotel[], 
+                                                                console.log("result : ",searchByRoomTypeResult)),
+                                     error => console.log("error with room type GET request,", error))
 
-      if (this.foundHotels.length == 0) {
+    }
 
-        this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase() === searchedQuery.toLowerCase());
-
-    // } else {
-
-    //   let searchByRoomType = `http://localhost:8088/hotelbookingsystem/hotel/SearchByRoomType/${searchedQuery}`;
-    //   searchByRoomTypeResp = this._http.get(searchByRoomType);
-    //   searchByRoomTypeResp.subscribe(searchByRoomTypeResult => this.hotels = searchByRoomTypeResult as Hotel[],
-    //                 error => console.log("Hotels by rooms GET call failed ", error))
-
-    // }
-
-    return this.foundHotels;
+    // return this.foundHotels;
 
   }
 }
-}
+
