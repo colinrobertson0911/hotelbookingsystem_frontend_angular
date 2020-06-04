@@ -11,7 +11,6 @@ import { Room } from 'src/app/models/room';
 export class LandingComponent implements OnInit {
 
   @Input() hotel : Hotel[];
-  @Input() room : Room[];
   @Input() foundHotel : Hotel[];
 
   hotels : Hotel[];
@@ -23,9 +22,9 @@ export class LandingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let allHotels = "http://localhost:8088/hotelbookingsystem/admin/AllHotels/";
-    let allHotelsResp = this._http.get(allHotels);
-    allHotelsResp.subscribe(allHotelsResult => this.hotels = allHotelsResult as Hotel[],
+    let backend_url = "http://localhost:8088/hotelbookingsystem/admin/AllHotels/";
+    let resp = this._http.get(backend_url);
+    resp.subscribe(result => this.hotels = result as Hotel[],
                   error => console.log("hotel list GET call failed ", error))
 
 }
@@ -36,24 +35,15 @@ export class LandingComponent implements OnInit {
 
   searchHotels(searchedQuery) {
 
-
       this.foundHotels = this.hotels.filter(hotel => hotel.city.toLowerCase() === searchedQuery.toLowerCase());
 
       if (this.foundHotels.length == 0) {
 
         this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase() === searchedQuery.toLowerCase());
 
-    // } else {
+      }
 
-    //   let searchByRoomType = `http://localhost:8088/hotelbookingsystem/hotel/SearchByRoomType/${searchedQuery}`;
-    //   searchByRoomTypeResp = this._http.get(searchByRoomType);
-    //   searchByRoomTypeResp.subscribe(searchByRoomTypeResult => this.hotels = searchByRoomTypeResult as Hotel[],
-    //                 error => console.log("Hotels by rooms GET call failed ", error))
+      return this.foundHotels;
 
-    // }
-
-    return this.foundHotels;
-
+      }
   }
-}
-}
