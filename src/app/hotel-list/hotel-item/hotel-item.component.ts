@@ -12,7 +12,6 @@ export class HotelItemComponent implements OnInit {
 
   @Input() hotel : Hotel;
 
-  details = false;
   constructor(private stateService : StateService,
               private router : Router) { }
 
@@ -23,8 +22,6 @@ export class HotelItemComponent implements OnInit {
     this.stateService.data = this.hotel as Hotel;
     this.router.navigate([`/hotel-single/${id}`])
   }
-  onDetailsClick(){
-    this.details = !this.details;
-  }
+
 
 }
