@@ -1,1 +1,18 @@
-<p>bookings works!</p>
+
+<p>Start Date</p>
+<div class="container">
+<input matInput [matDatepicker]="startPicker" placeholder="Start date"
+             (dateInput)="inputStartDate($event)" (dateChange)="changeStartDate($event)">
+<mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+<mat-datepicker #startPicker></mat-datepicker>
+</div>
+
+<br><br>
+
+<p>End Date</p>
+<div class="container">
+<input matInput [matDatepicker]="endPicker" placeholder="End date"
+             (dateInput)="inputEndDate($event)" (dateChange)="changeEndDate($event)">
+<mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+<mat-datepicker #endPicker></mat-datepicker>
+</div>

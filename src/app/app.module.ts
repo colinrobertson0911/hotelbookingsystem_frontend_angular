@@ -24,6 +24,9 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { AuthenticationService } from './services/authentication.service';
 import { HotelSingleComponent } from './hotel-single/hotel-single.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { HotelSingleComponent } from './hotel-single/hotel-single.component';
     MatIconModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule
   ],
   providers: [AuthGuard, AuthenticationService, 
   {
