@@ -1,0 +1,8 @@
+a:hover{cursor:pointer};
+
+a:link{font-weight: bold;
+    background-color: hotpink};
+
+.nav-link a{
+    color: hotpink;
+}
