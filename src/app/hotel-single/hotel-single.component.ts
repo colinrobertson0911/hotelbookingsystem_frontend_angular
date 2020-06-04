@@ -1,45 +1,42 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, DoCheck} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Hotel } from 'src/app/models/hotel';
 import { StateService } from '../services/state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotel-single',
   templateUrl: './hotel-single.component.html',
   styleUrls: ['./hotel-single.component.css']
 })
-export class HotelSingleComponent implements OnInit, OnDestroy {
+export class HotelSingleComponent implements OnInit, DoCheck {
 
-  // @Input() hotel : Hotel;
 
   selectedHotel : Hotel[];
   hotel : Hotel;
 
   constructor(private _http : HttpClient,
-              private stateService : StateService) { }
+              private stateService : StateService,
+              private _router : Router) { }
 
 
   ngOnInit(): void {
-    console.log("AAAAAAAAAAAAAAA",this.stateService.data)
-    if ( (this.stateService.data === undefined) &&
-         (!!localStorage.getItem(`hotel-item-${localStorage.getItem('id-for-refresh')}`)))
-    {
-        this.hotel = JSON.parse(localStorage.getItem(`hotel-item-${localStorage.getItem('id-for-refresh')}`));
-        console.log(this.hotel)
-        console.log(typeof(this.hotel))
-      
-    } else {
+    if (!!this.stateService.data){
       this.hotel = this.stateService.data;
     }
-    localStorage.setItem('id-for-refresh', String(this.hotel.hotelId))
-    localStorage.setItem(`hotel-item-${this.hotel.hotelId}`, JSON.stringify(this.hotel))
-    // let backend_url = `http://localhost:8088/hotelbookingsystem/hotel/SeeHotel/${this.hotel.hotelId}`;
-    // let resp = this._http.get(backend_url);
-    // resp.subscribe(result => this.selectedHotel = result as Hotel[],
-    //               error => console.log("selected hotel call FAILED ", error))
+    else if (!!localStorage.getItem(this._router.url)){
+      this.hotel = JSON.parse(localStorage.getItem(this._router.url));
+    }
+    else {
+    const backend_url = `http://localhost:8088/hotelbookingsystem/hotel/SeeHotel/${this._router.url.substr(-1)}`;
+    this._http.get(backend_url)
+      .subscribe(result => (this.hotel = result as Hotel),
+                error => console.log("selected hotel call FAILED ", error))
+    }
   }
 
-  ngOnDestroy(): void {
-    localStorage.setItem(`hotel-item-${this.hotel.hotelId}`, JSON.stringify(this.hotel))
+  ngDoCheck(){
+    localStorage.setItem(this._router.url, JSON.stringify(this.hotel))
   }
+
 }
