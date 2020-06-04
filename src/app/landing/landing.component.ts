@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Hotel } from 'src/app/models/hotel';
 import { Room } from 'src/app/models/room';
+import { StateService } from 'src/app/services/state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -15,11 +17,13 @@ export class LandingComponent implements OnInit {
   @Input() foundHotel : Hotel[];
 
   hotels : Hotel[];
+  selectedHotel: Hotel;
   foundHotels : Hotel[];
   numberOfHotels =  Hotel.length;
   searchedQuery = '';
 
-  constructor(private _http : HttpClient) { }
+  constructor(private _http : HttpClient, private stateService : StateService
+    ,private router : Router) { }
 
   ngOnInit(): void {
 
@@ -29,6 +33,12 @@ export class LandingComponent implements OnInit {
                   error => console.log("hotel list GET call failed ", error))
 
 }
+
+onClickToPage(id){
+  this.stateService.data = this.selectedHotel as Hotel;
+  this.router.navigate([`/hotel-single/${id}`])
+}
+
 
   saveQuery(event: any) {
     this.searchedQuery = event.target.value;

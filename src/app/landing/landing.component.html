@@ -11,7 +11,7 @@
 
     <div>
         <h3>Found hotels:</h3>
-        <p *ngFor="let hotel of foundHotels">{{ hotel.hotelName }} <br> {{ hotel.city }}</p>
+        <p *ngFor="let hotel of foundHotels"><a class="nav-link" routerLink="/hotel-single/{{hotel.hotelId}}" (click)="onClickToPage(hotel.hotelId)">{{hotel.hotelName}}</a> <br> {{ hotel.city }}</p>
     </div>
 
 
