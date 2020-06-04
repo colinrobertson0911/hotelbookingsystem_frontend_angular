@@ -10,8 +10,9 @@
     <button class="btn btn-primary" (click)="searchHotels(searchedQuery)">Search</button>
 
     <div>
+        <br>
         <h3>Found hotels:</h3>
-        <p *ngFor="let hotel of foundHotels"><a class="nav-link" routerLink="/hotel-single/{{hotel.hotelId}}" (click)="onClickToPage(hotel.hotelId)">{{hotel.hotelName}}</a> <br> {{ hotel.city }}</p>
+        <a *ngFor="let hotel of foundHotels" class="nav-link" routerLink="/hotel-single/{{hotel.hotelId}}" (click)="onClickToPage(hotel.hotelId)">{{hotel.hotelName}} {{ hotel.city }}</a>
     </div>
 
 
