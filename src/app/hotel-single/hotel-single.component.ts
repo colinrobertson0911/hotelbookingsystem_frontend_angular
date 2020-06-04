@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Hotel } from 'src/app/models/hotel';
 import { StateService } from '../services/state.service';
 import { Router } from '@angular/router';
+// import { LocalStorageService } from './services/localStorage.service';
 
 @Component({
   selector: 'app-hotel-single',
