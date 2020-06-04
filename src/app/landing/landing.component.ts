@@ -12,11 +12,13 @@ export class LandingComponent implements OnInit {
 
   @Input() hotel : Hotel[];
   @Input() foundHotel : Hotel[];
+  @Input() room : Room[];
 
   hotels : Hotel[];
   foundHotels : Hotel[];
   numberOfHotels =  Hotel.length;
   searchedQuery = '';
+  searchByRoomTypeResp : '';
 
   constructor(private _http : HttpClient) { }
 
@@ -26,6 +28,8 @@ export class LandingComponent implements OnInit {
     let resp = this._http.get(backend_url);
     resp.subscribe(result => this.hotels = result as Hotel[],
                   error => console.log("hotel list GET call failed ", error))
+
+    
 
 }
 
@@ -43,7 +47,17 @@ export class LandingComponent implements OnInit {
 
       }
 
-      return this.foundHotels;
+      if( this.foundHotels.length == 0) {
+        this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase().includes(searchedQuery.toLowerCase()));
+      }
+    
+        else {      
+         let searchByRoomType = "http://localhost:8088/hotelbookingsystem/hotel/SearchByRoomType/${searchedQuery}";     
+         let searchByRoomTypeResp = this._http.get(searchByRoomType);     
+         searchByRoomTypeResp.subscribe(searchByRoomTypeResult => this.foundHotels = searchByRoomTypeResult as Hotel[],     
+                     error => console.log("Hotels by rooms GET call failed ", error))      
+       }
 
+       return this.foundHotels;
       }
   }
