@@ -9,6 +9,7 @@ import { RegistrationForm } from '../models/registration-form';
 })
 export class AuthenticationService {
 
+  // not right url but cant change untill back end does
   login_url = 'http://localhost:8088/hotelbookingsystem/login/LoginUserSubmit/1';
   registration_url = "http://localhost:8088/hotelbookingsystem/register/RegisterUserSubmit/";
 

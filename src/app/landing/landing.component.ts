@@ -11,25 +11,22 @@ import { Room } from 'src/app/models/room';
 export class LandingComponent implements OnInit {
 
   @Input() hotel : Hotel[];
-  @Input() foundHotel : Hotel[];
   @Input() room : Room[];
+  @Input() foundHotel : Hotel[];
 
   hotels : Hotel[];
   foundHotels : Hotel[];
   numberOfHotels =  Hotel.length;
   searchedQuery = '';
-  searchByRoomTypeResp : '';
 
   constructor(private _http : HttpClient) { }
 
   ngOnInit(): void {
 
-    let backend_url = "http://localhost:8088/hotelbookingsystem/admin/AllHotels/";
-    let resp = this._http.get(backend_url);
-    resp.subscribe(result => this.hotels = result as Hotel[],
+    let allHotels = "http://localhost:8088/hotelbookingsystem/admin/AllHotels/";
+    let allHotelsResp = this._http.get(allHotels);
+    allHotelsResp.subscribe(allHotelsResult => this.hotels = allHotelsResult as Hotel[],
                   error => console.log("hotel list GET call failed ", error))
-
-    
 
 }
 
@@ -38,26 +35,26 @@ export class LandingComponent implements OnInit {
   }
 
   searchHotels(searchedQuery) {
+    console.log("searched query entered with : ", searchedQuery)
 
-      this.foundHotels = this.hotels.filter(hotel => hotel.city.toLowerCase() === searchedQuery.toLowerCase());
+    this.foundHotels = this.hotels.filter(hotel => hotel.city.toLowerCase() === searchedQuery.toLowerCase());
+    console.log("found hotels : ", this.foundHotel)
+    if (this.foundHotels.length == 0) {
 
-      if (this.foundHotels.length == 0) {
-
-        this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase() === searchedQuery.toLowerCase());
-
-      }
-
-      if( this.foundHotels.length == 0) {
-        this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase().includes(searchedQuery.toLowerCase()));
-      }
+      this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase() === searchedQuery.toLowerCase());
     
-        else {      
-         let searchByRoomType = "http://localhost:8088/hotelbookingsystem/hotel/SearchByRoomType/${searchedQuery}";     
-         let searchByRoomTypeResp = this._http.get(searchByRoomType);     
-         searchByRoomTypeResp.subscribe(searchByRoomTypeResult => this.foundHotels = searchByRoomTypeResult as Hotel[],     
-                     error => console.log("Hotels by rooms GET call failed ", error))      
-       }
+    }
+    if (this.foundHotels.length == 0) {
+      console.log("room type : ", searchedQuery.toString())
+      let searchByRoomType = `http://localhost:8088/hotelbookingsystem/hotel/SearchByRoomType/${searchedQuery.toUpperCase()}`;
+      let searchByRoomTypeResp = this._http.get(searchByRoomType);
+      searchByRoomTypeResp.subscribe(searchByRoomTypeResult => (this.foundHotels = searchByRoomTypeResult as Hotel[], 
+                                                                console.log("result : ",searchByRoomTypeResult)),
+                                     error => console.log("error with room type GET request,", error))
 
-       return this.foundHotels;
-      }
+    }
+
+    // return this.foundHotels;
+
   }
+}
