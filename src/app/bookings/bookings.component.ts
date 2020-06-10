@@ -1,9 +1,12 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Injectable, NgModule } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Injectable, NgModule, DoCheck } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { Bookings } from '../models/bookings'
 import { HotelSingleComponent } from '../hotel-single/hotel-single.component'
 import { Hotel } from '../models/hotel';
+import { StateService } from '../services/state.service';
+import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bookings',
@@ -12,28 +15,37 @@ import { Hotel } from '../models/hotel';
 })
 
 @Injectable()
-export class BookingsComponent implements OnInit {
+export class BookingsComponent implements OnInit, DoCheck {
 
   private submitBooking = `http://localhost:8088/hotelbookingsystem/hotel/BookingSubmit`;
     
   
   startDate = new Date();
   endDate = new Date();
+  hotel : Hotel;
   
-  @Input() booking : Bookings;
+
+  constructor(private _http: HttpClient,
+              private _state: StateService,
+              private _router: Router) { }
+
   
-  // @Input() selectedHotel : HotelSingleComponent["selectedHotel"];
-
-  constructor(private _http: HttpClient) { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['selectedHotel']) {
-      // this.selectedHotel = HotelSingleComponent["selectedHotel"];
-    }
-
-}
 
   ngOnInit(): void {
+
+    if (!!this._state.data){
+      this.hotel = this._state.data as Hotel;
+    } else if (!!sessionStorage.getItem('current-hotel-booking')){
+      this.hotel = JSON.parse(sessionStorage.getItem('current-hotel-booking')) as Hotel;
+    } else {
+      // needs a better solution, maybe drop down menu at top to pick hotel instead of passing 
+      // data through storage and stateService
+      this._router.navigate(['/landing'])
+    }
+  }
+
+  ngDoCheck(){
+    sessionStorage.setItem("current-hotel-booking", JSON.stringify(this.hotel));
   }
 
   inputStartDate(event){
@@ -55,10 +67,10 @@ export class BookingsComponent implements OnInit {
   }
 
   createAndSubmitBooking(startDate, endDate) {
-    this.booking.checkInDate = startDate.toString();
-    this.booking.checkOutDate = endDate.toString();
+    // this.booking.checkInDate = startDate.toString();
+    // this.booking.checkOutDate = endDate.toString();
 
-    var submitBookingResp = this._http.get(this.submitBooking);
+    // var submitBookingResp = this._http.get(this.submitBooking);
     // submitBookingResp.subscribe(bookingResult => (this.selectedHotel = bookingResult as HotelSingleComponent["selectedHotel"], 
     //                                                           console.log("result : ",bookingResult)),
     //                                error => console.log("error with room type GET request,", error))

@@ -13,12 +13,12 @@ export class AuthenticationService {
   login_url = 'http://localhost:8088/hotelbookingsystem/login/authenticate'
   registration_url = "http://localhost:8088/hotelbookingsystem/register/RegisterUserSubmit/";
   return = '';
+  
 
   constructor(private _http : HttpClient,
               private _router : Router,
               private _route: ActivatedRoute) 
               { 
-              console.log("DDDDDDDDDDDDDd",this._router.routerState)
               this._route.queryParams
               .subscribe(params => this.return = params['return'] || '/landing');
               }
@@ -35,6 +35,7 @@ export class AuthenticationService {
       console.log(resp)
       // localStorage.setItem('token', 'notAGoodToken')
       localStorage.setItem('token', resp['jwt'])
+      localStorage.setItem('username', login.username)
       this._router.navigateByUrl(this.return)
     },
     error => console.log(error))
@@ -57,6 +58,7 @@ export class AuthenticationService {
 
     logout(){
       localStorage.removeItem('token')
+      localStorage.removeItem('username')
       this._router.navigate['/landing']
     }
 

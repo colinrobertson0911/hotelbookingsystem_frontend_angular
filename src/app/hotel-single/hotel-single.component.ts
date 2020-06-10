@@ -47,4 +47,8 @@ export class HotelSingleComponent implements OnInit, DoCheck {
     sessionStorage.setItem(this._router.url, JSON.stringify(this.hotel))
   }
 
+
+  saveState(){
+    this.stateService.data = this.hotel
+  }
 }
