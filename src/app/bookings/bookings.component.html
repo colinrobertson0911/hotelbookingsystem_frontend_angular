@@ -20,11 +20,24 @@
 <mat-datepicker #endPicker></mat-datepicker>
 </div>
 
+<div>
+    <p>Room Type</p>
+    <mat-form-field>
+        <mat-label>Room Type</mat-label>
+        <mat-select [(value)]="roomtypeSelected">
+          <mat-option *ngFor="let type of roomTypes" [value]="type.value">
+            {{ type.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+</div>
+
+
 <div class="container">
 
     <button class="btn btn-primary" (click)="createAndSubmitBooking(startDate, endDate)">Submit booking</button>
 
 </div>
-
+<div class="container"><br><p>Room type selected: {{roomtypeSelected}}</p></div>
 <div class="container"><br><p>Selected check-in date: {{ startDate }}</p></div>
 <div class="container"><br><p>Selected check-out date: {{ endDate }}</p></div>

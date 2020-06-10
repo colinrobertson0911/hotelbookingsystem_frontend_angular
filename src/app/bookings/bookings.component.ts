@@ -7,6 +7,12 @@ import { Hotel } from '../models/hotel';
 import { StateService } from '../services/state.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { MatSelect} from '@angular/material/select';
+
+export interface RoomType {
+    value : string;
+    viewValue : string;
+}
 
 @Component({
   selector: 'app-bookings',
@@ -23,6 +29,10 @@ export class BookingsComponent implements OnInit, DoCheck {
   startDate = new Date();
   endDate = new Date();
   hotel : Hotel;
+
+  roomTypes : RoomType[] = [{value:'STANDARD', viewValue:'standard'},
+                            {value: 'LUXURY', viewValue:'luxury'}]
+  roomtypeSelected : string;
   
 
   constructor(private _http: HttpClient,
