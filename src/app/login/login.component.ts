@@ -22,13 +22,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this._route.queryParams
-      .subscribe(params => this.return = params['return'] || '/bookings');
+      .subscribe(params => this.return = params['return'] || '/landing');
   }
 
   onSubmit(loginForm: NgForm){
     console.log(JSON.stringify(loginForm.value))
 
-    // below only works on my (simon's) mock node server
     this.user_login = new Login(loginForm.value.username, loginForm.value.password);
     this._auth.logon(this.user_login)
     this._router.navigateByUrl(this.return)

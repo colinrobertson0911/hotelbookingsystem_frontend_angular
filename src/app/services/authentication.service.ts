@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Login } from '../models/login';
 import { RegistrationForm } from '../models/registration-form';
 
@@ -9,14 +9,20 @@ import { RegistrationForm } from '../models/registration-form';
 })
 export class AuthenticationService {
 
-  // not right url but cant change untill back end does
-  // login_url = 'http://localhost:8080/authenticate'
+  
   login_url = 'http://localhost:8088/hotelbookingsystem/login/authenticate'
-  // login_url = 'http://localhost:8088/hotelbookingsystem/login/LoginUserSubmit/1';
   registration_url = "http://localhost:8088/hotelbookingsystem/register/RegisterUserSubmit/";
+  return = '';
 
   constructor(private _http : HttpClient,
-              private _router : Router) { }
+              private _router : Router,
+              private _route: ActivatedRoute) 
+              { 
+              console.log("DDDDDDDDDDDDDd",this._router.routerState)
+              this._route.queryParams
+              .subscribe(params => this.return = params['return'] || '/landing');
+              }
+
 
   logon(login : Login){
 
@@ -29,7 +35,7 @@ export class AuthenticationService {
       console.log(resp)
       // localStorage.setItem('token', 'notAGoodToken')
       localStorage.setItem('token', resp['jwt'])
-      // this._router.navigate(['/landing'])
+      this._router.navigateByUrl(this.return)
     },
     error => console.log(error))
   }
