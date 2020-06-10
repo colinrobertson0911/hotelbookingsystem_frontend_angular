@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Hotel } from '../models/hotel';
+
 
 @Component({
   selector: 'app-hotel-list',

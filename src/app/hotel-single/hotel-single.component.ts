@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Hotel } from 'src/app/models/hotel';
 import { StateService } from '../services/state.service';
 import { Router } from '@angular/router';
-// import { LocalStorageService } from './services/localStorage.service';
+
 
 @Component({
   selector: 'app-hotel-single',
@@ -12,9 +12,8 @@ import { Router } from '@angular/router';
 })
 export class HotelSingleComponent implements OnInit, DoCheck {
 
-
-  selectedHotel : Hotel[];
   hotel : Hotel;
+  selectedhotel : Hotel
 
   constructor(private _http : HttpClient,
               private stateService : StateService,
@@ -22,14 +21,22 @@ export class HotelSingleComponent implements OnInit, DoCheck {
 
 
   ngOnInit(): void {
+    /*regex would be bettter but using it breaks the get request,
+    guess it takes too long to run and the string formatter trys to 
+    call it before it has time to be set.  
+    could look to set a wait function for it
+    */
+
+    const re = new RegExp(/\d+/g)
+    // re.exec(this._router.url)[0])
     if (!!this.stateService.data){
       this.hotel = this.stateService.data;
     }
-    else if (!!localStorage.getItem(this._router.url)){
-      this.hotel = JSON.parse(localStorage.getItem(this._router.url));
+    else if (!!sessionStorage.getItem(this._router.url)){
+      this.hotel = JSON.parse(sessionStorage.getItem(this._router.url));
     }
     else {
-    const backend_url = `http://localhost:8088/hotelbookingsystem/hotel/SeeHotel/${this._router.url.substr(-1)}`;
+    const backend_url = `http://localhost:8088/hotelbookingsystem/hotel/SeeHotel/${re.exec(this._router.url)[0].toString()}`;
     this._http.get(backend_url)
       .subscribe(result => (this.hotel = result as Hotel),
                 error => console.log("selected hotel call FAILED ", error))
@@ -37,7 +44,7 @@ export class HotelSingleComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(){
-    localStorage.setItem(this._router.url, JSON.stringify(this.hotel))
+    sessionStorage.setItem(this._router.url, JSON.stringify(this.hotel))
   }
 
 }

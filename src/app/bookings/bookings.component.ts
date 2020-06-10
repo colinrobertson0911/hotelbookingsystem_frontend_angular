@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Injectable } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Injectable, NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { Bookings } from '../models/bookings'
 import { HotelSingleComponent } from '../hotel-single/hotel-single.component'
+import { Hotel } from '../models/hotel';
 
 @Component({
   selector: 'app-bookings',
@@ -12,19 +13,22 @@ import { HotelSingleComponent } from '../hotel-single/hotel-single.component'
 
 @Injectable()
 export class BookingsComponent implements OnInit {
+
+  private submitBooking = `http://localhost:8088/hotelbookingsystem/hotel/BookingSubmit`;
+    
   
   startDate = new Date();
   endDate = new Date();
   
   @Input() booking : Bookings;
-
-  @Input() selectedHotel : HotelSingleComponent["selectedHotel"];
+  
+  // @Input() selectedHotel : HotelSingleComponent["selectedHotel"];
 
   constructor(private _http: HttpClient) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['selectedHotel']) {
-      this.selectedHotel = HotelSingleComponent["selectedHotel"];
+      // this.selectedHotel = HotelSingleComponent["selectedHotel"];
     }
 
 }
@@ -54,11 +58,10 @@ export class BookingsComponent implements OnInit {
     this.booking.checkInDate = startDate.toString();
     this.booking.checkOutDate = endDate.toString();
 
-    let submitBooking = `http://localhost:8088/hotelbookingsystem/hotel/BookingSubmit`;
-    let submitBookingResp = this._http.get(submitBooking);
-    submitBookingResp.subscribe(bookingResult => (this.selectedHotel = bookingResult as HotelSingleComponent["selectedHotel"], 
-                                                              console.log("result : ",bookingResult)),
-                                   error => console.log("error with room type GET request,", error))
+    var submitBookingResp = this._http.get(this.submitBooking);
+    // submitBookingResp.subscribe(bookingResult => (this.selectedHotel = bookingResult as HotelSingleComponent["selectedHotel"], 
+    //                                                           console.log("result : ",bookingResult)),
+    //                                error => console.log("error with room type GET request,", error))
 
   }
 
