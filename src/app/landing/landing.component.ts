@@ -37,6 +37,7 @@ export class LandingComponent implements OnInit {
 onClickToPage(id){
   this.stateService.data = this.selectedHotel as Hotel;
   this.router.navigate([`/hotel-single/${id}`])
+  
 }
 
 

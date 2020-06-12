@@ -1,5 +1,5 @@
 
-{{hotel.hotelName}}
+<p>{{hotel.hotelName}}</p>
 
 
 <p>Start Date</p>
@@ -38,6 +38,10 @@
     <button class="btn btn-primary" (click)="createAndSubmitBooking(startDate, endDate)">Submit booking</button>
 
 </div>
+<div class="container"><br><p>Hotel selected: {{ hotel.hotelName }}</p></div>
 <div class="container"><br><p>Room type selected: {{roomtypeSelected}}</p></div>
 <div class="container"><br><p>Selected check-in date: {{ startDate }}</p></div>
 <div class="container"><br><p>Selected check-out date: {{ endDate }}</p></div>
+
+
+<!-- <div class="container"><br><p>Selected check-in date: {{ startDate | date: ‘dd/MM/yyyy’ }}</p></div> -->
