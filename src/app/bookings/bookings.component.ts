@@ -90,7 +90,7 @@ export class BookingsComponent implements OnInit, DoCheck {
     this.bookingRequest.checkOutDate = this.dateFormatter(splitEndDate[1], splitEndDate[2],splitEndDate[3]).toString()
     this.bookingRequest.roomType = this.roomtypeSelected
     
-    console.log("TESTING", this.bookingRequest)
+  
     const submitBookingRequest = this._http.post(this.submitBooking, this.bookingRequest, {headers : headers})
       .subscribe(resp => console.log("booking created", this.bookingRequest),
                  err => console.log("booking failed ", err));
@@ -100,20 +100,20 @@ export class BookingsComponent implements OnInit, DoCheck {
 
   dateFormatter(month, day, year){
     var dict = new Map<String, String>()
-    dict['Jan'] = '1'
-    dict['Feb'] = '2'
-    dict['Mar'] = '3'
-    dict['Apr'] = '4'
-    dict['May'] = '5'
-    dict['Jun'] = '6'
-    dict['Jul'] = '7'
-    dict['Aug'] = '8'
-    dict['Sep'] = '9'
+    dict['Jan'] = '01'
+    dict['Feb'] = '02'
+    dict['Mar'] = '03'
+    dict['Apr'] = '04'
+    dict['May'] = '05'
+    dict['Jun'] = '06'
+    dict['Jul'] = '07'
+    dict['Aug'] = '08'
+    dict['Sep'] = '09'
     dict['Oct'] = '10'
     dict['Nov'] = '11'
     dict['Dec'] = '12'
 
-    return (day+"/"+dict[month]+"/"+year)
+    return (year+"-"+dict[month]+"-"+day)
 }
 
 }
