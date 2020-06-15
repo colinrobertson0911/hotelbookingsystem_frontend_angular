@@ -28,6 +28,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -57,9 +59,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatNativeDateModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule,
+    MatCheckboxModule
   ],
-  providers: [AuthGuard, AuthenticationService, 
+  providers: [AuthGuard, AuthenticationService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

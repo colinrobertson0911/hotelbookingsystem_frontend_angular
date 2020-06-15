@@ -13,8 +13,8 @@ export class Hotel {
     starRating : number;
     room : Room[];
     airportTransfers : boolean;
-    transferProce : number;
+    transferPrice : number;
     verified : boolean;
-    
+
 }
 

@@ -4,4 +4,5 @@ export class BookingRequest {
     checkInDate : string;
     checkOutDate : string;
     roomType : string;
+    extras: any;
 }

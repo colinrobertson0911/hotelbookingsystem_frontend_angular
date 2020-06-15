@@ -31,6 +31,7 @@ export class BookingsComponent implements OnInit, DoCheck {
   startDate = new Date();
   endDate = new Date();
   hotel: Hotel;
+  checked = false;
 
   roomTypes: RoomType[] = [{value: 'STANDARD', viewValue: 'standard'},
                             {value: 'LUXURY', viewValue: 'luxury'},
@@ -57,6 +58,10 @@ export class BookingsComponent implements OnInit, DoCheck {
       // data through storage and stateService
       this._router.navigate(['/landing']);
     }
+  }
+
+  onSelectionChange(){
+
   }
 
   ngDoCheck(){
@@ -87,7 +92,11 @@ export class BookingsComponent implements OnInit, DoCheck {
     this.bookingRequest.checkInDate = this.dateFormatter(splitStartDate[1], splitStartDate[2], splitStartDate[3]).toString();
     this.bookingRequest.checkOutDate = this.dateFormatter(splitEndDate[1], splitEndDate[2], splitEndDate[3]).toString();
     this.bookingRequest.roomType = this.roomtypeSelected;
-
+    if (this.checked){
+      this.bookingRequest.extras = "AIRPORTTRANSFER";
+    } else {
+      this.bookingRequest.extras = "NO_EXTRAS";
+    }
     this.bookingService.submitBookingRequest(this.bookingRequest).subscribe( data => {
       console.log(data);
     });
