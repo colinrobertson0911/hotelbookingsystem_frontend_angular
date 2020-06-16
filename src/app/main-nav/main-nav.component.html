@@ -24,9 +24,8 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>HotelBooking.com</span>
-      
+      <div *ngIf="auth.loggedOn()" class="username">User: {{ auth.user.username }}</div>
     </mat-toolbar>
-    <!-- Add Content Here -->
     <router-outlet></router-outlet>
 
   </mat-sidenav-content>

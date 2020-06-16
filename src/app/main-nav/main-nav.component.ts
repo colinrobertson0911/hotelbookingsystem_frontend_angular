@@ -17,7 +17,7 @@ export class MainNavComponent implements OnInit {
       shareReplay()
     );
 
-  auth :AuthenticationService;
+  auth: AuthenticationService;
 
   constructor(private breakpointObserver: BreakpointObserver,
               private injector: Injector) {}
