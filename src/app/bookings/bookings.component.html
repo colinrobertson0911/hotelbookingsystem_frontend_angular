@@ -1,47 +1,40 @@
 <div class="margins">
   <p>{{hotel.hotelName}}</p>
-
-
   <p>Start Date</p>
   <div class="container">
-  <input matInput [matDatepicker]="startPicker" placeholder="Start date"
-               (dateInput)="inputStartDate($event)" (dateChange)="changeStartDate($event)">
-  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-  <mat-datepicker #startPicker></mat-datepicker>
+    <input matInput [matDatepicker]="startPicker" placeholder="Start date"
+                 (dateInput)="inputStartDate($event)" (dateChange)="changeStartDate($event)">
+    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+    <mat-datepicker #startPicker></mat-datepicker>
   </div>
-
-  <br><br>
-
+  <br>
   <p>End Date</p>
   <div class="container">
-  <input matInput [matDatepicker]="endPicker" placeholder="End date"
-               (dateInput)="inputEndDate($event)" (dateChange)="changeEndDate($event)">
-  <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-  <mat-datepicker #endPicker></mat-datepicker>
+    <input matInput [matDatepicker]="endPicker" placeholder="End date"
+           (dateInput)="inputEndDate($event)" (dateChange)="changeEndDate($event)">
+    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+    <mat-datepicker #endPicker></mat-datepicker>
   </div>
-
   <div>
       <p>Room Type</p>
       <mat-form-field>
           <mat-label>Room Type</mat-label>
-          <mat-select [(value)]="roomtypeSelected">
+          <mat-select [(value)]="roomTypeSelected">
             <mat-option *ngFor="let type of hotel.room" [value]="type.roomType">
-              {{ type.roomType }}
+              {{ type.roomType }} - £{{ type.price }}
             </mat-option>
           </mat-select>
         </mat-form-field>
   </div>
   <div *ngIf="hotel.airportTransfers">
     <mat-checkbox class="example-margin" [(ngModel)]="checked">Airport Transfer?</mat-checkbox>
+    <br>
+    <mat-label>It costs £{{ hotel.transferPrice }}</mat-label>
   </div>
-
   <div class="container">
-
-      <button class="btn btn-primary" (click)="createAndSubmitBooking(startDate, endDate)">Submit booking</button>
-
+      <button class="btn btn-primary" [disabled]="submitted" (click)="createAndSubmitBooking(startDate, endDate)">Submit booking</button>
   </div>
-  <div class="container"><br><p>Hotel selected: {{ hotel.hotelName }}</p></div>
-  <div class="container"><br><p>Room type selected: {{roomtypeSelected}}</p></div>
-  <div class="container"><br><p>Selected check-in date: {{ startDate }}</p></div>
-  <div class="container"><br><p>Selected check-out date: {{ endDate }}</p></div>
+  <div *ngIf="response">
+    <h2>Total cost is: £{{ response.totalPrice }}</h2>
+  </div>
 </div>

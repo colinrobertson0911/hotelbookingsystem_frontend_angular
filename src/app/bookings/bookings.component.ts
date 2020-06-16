@@ -32,12 +32,14 @@ export class BookingsComponent implements OnInit, DoCheck {
   endDate = new Date();
   hotel: Hotel;
   checked = false;
+  submitted = false;
+  response: any;
 
   roomTypes: RoomType[] = [{value: 'STANDARD', viewValue: 'standard'},
                             {value: 'LUXURY', viewValue: 'luxury'},
                             {value: 'DELUXE', viewValue: 'deluxe'},
                             {value: 'SUITE', viewValue: 'suite'}];
-  roomtypeSelected: string;
+  roomTypeSelected: string;
 
 
   constructor(private bookingService: BookingService,
@@ -58,10 +60,6 @@ export class BookingsComponent implements OnInit, DoCheck {
       // data through storage and stateService
       this._router.navigate(['/landing']);
     }
-  }
-
-  onSelectionChange(){
-
   }
 
   ngDoCheck(){
@@ -85,20 +83,21 @@ export class BookingsComponent implements OnInit, DoCheck {
 
   createAndSubmitBooking(startDate, endDate) {
 
+    this.submitted = true;
     const splitStartDate = this.startDate.toString().split(' ');
     const splitEndDate = this.endDate.toString().split(' ');
 
     this.bookingRequest.hotel = this.hotel.hotelName;
     this.bookingRequest.checkInDate = this.dateFormatter(splitStartDate[1], splitStartDate[2], splitStartDate[3]).toString();
     this.bookingRequest.checkOutDate = this.dateFormatter(splitEndDate[1], splitEndDate[2], splitEndDate[3]).toString();
-    this.bookingRequest.roomType = this.roomtypeSelected;
+    this.bookingRequest.roomType = this.roomTypeSelected;
     if (this.checked){
-      this.bookingRequest.extras = "AIRPORTTRANSFER";
+      this.bookingRequest.extras = 'AIRPORTTRANSFER';
     } else {
-      this.bookingRequest.extras = "NO_EXTRAS";
+      this.bookingRequest.extras = 'NO_EXTRAS';
     }
     this.bookingService.submitBookingRequest(this.bookingRequest).subscribe( data => {
-      console.log(data);
+      this.response = data;
     });
 
   }

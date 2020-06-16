@@ -9,16 +9,16 @@ import { RegistrationForm } from '../models/registration-form';
 })
 export class AuthenticationService {
 
-  
+
   login_url = 'http://localhost:8088/hotelbookingsystem/login/authenticate'
-  registration_url = "http://localhost:8088/hotelbookingsystem/register/RegisterUserSubmit/";
+  registration_url = "http://localhost:8088/hotelbookingsystem/login/RegisterUserSubmit/";
   return = '';
-  
+
 
   constructor(private _http : HttpClient,
               private _router : Router,
-              private _route: ActivatedRoute) 
-              { 
+              private _route: ActivatedRoute)
+              {
               this._route.queryParams
               .subscribe(params => this.return = params['return'] || '/landing');
               }
