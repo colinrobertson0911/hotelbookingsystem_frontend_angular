@@ -30,6 +30,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ViewBookingsComponent } from './view-bookings/view-bookings.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HotelItemComponent,
     MainNavComponent,
     BookingsComponent,
-    HotelSingleComponent
+    HotelSingleComponent,
+    ViewBookingsComponent
   ],
   imports: [
     BrowserModule,

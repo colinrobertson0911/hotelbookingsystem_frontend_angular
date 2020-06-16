@@ -1,11 +1,11 @@
-<h1>{{hotel.hotelName}}</h1>
-
 <div class="container">
-    <p>Address:{{hotel.address}}, {{hotel.city}}, {{hotel.postcode}}</p>
-    <p>Rooms Available: {{hotel.numOfRooms}}</p>
-    <p>Amenities: {{hotel.ammenities}}</p>
-    <p>Airport Transfers: {{hotel.airportTransfers}}</p>
-    <p>Rating: {{hotel.starRating}}</p>
+  <h1>{{hotel.hotelName}}</h1>
+  <p>Address:{{hotel.address}}, {{hotel.city}}, {{hotel.postcode}}</p>
+  <p>Rooms Available: {{hotel.numOfRooms}}</p>
+  <p>Amenities: {{hotel.ammenities}}</p>
+  <p>Airport Transfers: {{hotel.airportTransfers}}</p>
+  <p>Rating: {{hotel.starRating}}</p>
+  <button class="btn btn-primary" (click)="saveState()" routerLink ="/bookings">Book Now!</button>
 </div>
-<button class="btn btn-primary" (click)="saveState()" routerLink ="/bookings">Book Now!</button>
+
 

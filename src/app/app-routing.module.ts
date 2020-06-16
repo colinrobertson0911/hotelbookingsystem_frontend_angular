@@ -8,6 +8,7 @@ import { HotelListComponent } from './hotel-list/hotel-list.component';
 import { AuthGuard } from './services/auth.guard';
 import { BookingsComponent } from './bookings/bookings.component';
 import { HotelSingleComponent } from './hotel-single/hotel-single.component';
+import {ViewBookingsComponent} from './view-bookings/view-bookings.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'hotel-list', component: HotelListComponent},
   { path: 'bookings', component: BookingsComponent, canActivate : [AuthGuard]},
+  { path: 'view-bookings', component: ViewBookingsComponent, canActivate : [AuthGuard]},
   { path: 'hotel-single/:{{hotel.hotelId}}', component: HotelSingleComponent}
 ];
 

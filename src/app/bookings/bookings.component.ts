@@ -44,21 +44,21 @@ export class BookingsComponent implements OnInit, DoCheck {
 
   constructor(private bookingService: BookingService,
               private http: HttpClient,
-              private _state: StateService,
-              private _router: Router) { }
+              private state: StateService,
+              private router: Router) { }
 
 
 
   ngOnInit(): void {
 
-    if (!!this._state.data){
-      this.hotel = this._state.data as Hotel;
+    if (!!this.state.data){
+      this.hotel = this.state.data as Hotel;
     } else if (!!sessionStorage.getItem('current-hotel-booking')){
       this.hotel = JSON.parse(sessionStorage.getItem('current-hotel-booking')) as Hotel;
     } else {
       // needs a better solution, maybe drop down menu at top to pick hotel instead of passing
       // data through storage and stateService
-      this._router.navigate(['/landing']);
+      this.router.navigate(['/landing']);
     }
   }
 
@@ -97,7 +97,9 @@ export class BookingsComponent implements OnInit, DoCheck {
       this.bookingRequest.extras = 'NO_EXTRAS';
     }
     this.bookingService.submitBookingRequest(this.bookingRequest).subscribe( data => {
-      this.response = data;
+      if (data){
+        this.router.navigate(['/view-bookings']);
+      }
     });
 
   }
