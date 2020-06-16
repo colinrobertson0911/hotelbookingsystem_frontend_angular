@@ -118,6 +118,7 @@ export class BookingsComponent implements OnInit, DoCheck {
     dict['Sep'] = '09'
     dict['Oct'] = '10'
     dict['Nov'] = '11'
+    dict['Dec'] = '12'
 
     return (year + '-' + dict[month] + '-' + day);
 }
