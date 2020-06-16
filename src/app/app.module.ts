@@ -33,6 +33,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ViewBookingsComponent } from './view-bookings/view-bookings.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AccountComponent } from './account/account.component';
+import { AddHotelComponent } from './add-hotel/add-hotel.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AccountComponent } from './account/account.component';
     BookingsComponent,
     HotelSingleComponent,
     ViewBookingsComponent,
-    AccountComponent
+    AccountComponent,
+    AddHotelComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,39 @@
+<h2>Create New Hotel</h2>
+
+<div class="container">
+    <form #hotelForm="ngForm" (ngSubmit)="addHotel(hotelForm)">
+    <div>
+        <label>Hotel Name:</label>
+        <input name="hotelName" required #hotelName="ngModel" class="form-control" 
+        type="text" [ngModel]="addHotelForm.hotelName">
+    </div>
+
+    <div>
+        <label>Address:</label>
+        <input name="address" required #address="ngModel" class="form-control" 
+        type="text" [ngModel]="addHotelForm.address">
+    </div>
+
+    <div>
+        <label>Postcode:</label>
+        <input name="postcode" required #postcode="ngModel" class="form-control" 
+        type="text" [ngModel]="addHotelForm.postcode">
+    </div>
+
+    <div>
+        <label>City:</label>
+        <input name="city" required #city="ngModel" class="form-control" 
+        type="text" [ngModel]="addHotelForm.city">
+    </div>
+
+    <div>
+        <label>Ammenities:</label>
+        <input name="ammenities" required #ammenities="ngModel" class="form-control" 
+        type="text" [ngModel]="addHotelForm.ammenities">
+    </div>
+    <div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+    </form>
+</div>
+
