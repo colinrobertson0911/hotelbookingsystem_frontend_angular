@@ -1,20 +1,11 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Injectable, NgModule, DoCheck } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { Bookings } from '../models/bookings';
-import { HotelSingleComponent } from '../hotel-single/hotel-single.component';
 import { Hotel } from '../models/hotel';
 import { StateService } from '../services/state.service';
-import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
-import { MatSelect} from '@angular/material/select';
 import { BookingRequest } from '../models/booking-request';
 import { BookingService } from '../services/booking.service';
-
-export interface RoomType {
-    value: string;
-    viewValue: string;
-}
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-bookings',
@@ -25,7 +16,6 @@ export interface RoomType {
 @Injectable()
 export class BookingsComponent implements OnInit, DoCheck {
 
-
   bookingRequest = new BookingRequest();
 
   startDate = new Date();
@@ -34,23 +24,28 @@ export class BookingsComponent implements OnInit, DoCheck {
   checked = false;
   submitted = false;
   response: any;
-
-  roomTypes: RoomType[] = [{value: 'STANDARD', viewValue: 'standard'},
-                            {value: 'LUXURY', viewValue: 'luxury'},
-                            {value: 'DELUXE', viewValue: 'deluxe'},
-                            {value: 'SUITE', viewValue: 'suite'}];
   roomTypeSelected: string;
-
+  minDate: Date;
+  minEndDate: Date;
+  start: string;
+  end: string;
 
   constructor(private bookingService: BookingService,
               private http: HttpClient,
               private state: StateService,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar) {
 
-
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    this.minDate = tomorrow;
+    this.minEndDate = tomorrow;
+    console.log(this.minDate);
+  }
 
   ngOnInit(): void {
-
     if (!!this.state.data){
       this.hotel = this.state.data as Hotel;
     } else if (!!sessionStorage.getItem('current-hotel-booking')){
@@ -72,6 +67,7 @@ export class BookingsComponent implements OnInit, DoCheck {
   }
   changeStartDate(event){
     this.startDate = event.target.value;
+    this.minEndDate = this.startDate;
   }
 
   inputEndDate(event){
@@ -83,7 +79,6 @@ export class BookingsComponent implements OnInit, DoCheck {
 
   createAndSubmitBooking(startDate, endDate) {
 
-    this.submitted = true;
     const splitStartDate = this.startDate.toString().split(' ');
     const splitEndDate = this.endDate.toString().split(' ');
 
@@ -96,12 +91,18 @@ export class BookingsComponent implements OnInit, DoCheck {
     } else {
       this.bookingRequest.extras = 'NO_EXTRAS';
     }
-    this.bookingService.submitBookingRequest(this.bookingRequest).subscribe( data => {
-      if (data){
-        this.router.navigate(['/view-bookings']);
-      }
-    });
-
+    if ((!this.start || this.start === '') || (!this.end || this.end === '') || (!this.roomTypeSelected || this.roomTypeSelected === '') ){
+      this.snackBar.open('Incomplete form', 'OK', {
+        duration: 3000,
+      });
+    } else {
+      this.submitted = true;
+      this.bookingService.submitBookingRequest(this.bookingRequest).subscribe( data => {
+        if (data){
+          this.router.navigate(['/view-bookings']);
+        }
+      });
+    }
   }
 
   dateFormatter(month, day, year){
@@ -117,7 +118,6 @@ export class BookingsComponent implements OnInit, DoCheck {
     dict['Sep'] = '09'
     dict['Oct'] = '10'
     dict['Nov'] = '11'
-
 
     return (year + '-' + dict[month] + '-' + day);
 }

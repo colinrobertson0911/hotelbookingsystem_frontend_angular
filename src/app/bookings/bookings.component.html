@@ -2,7 +2,7 @@
   <p>{{hotel.hotelName}}</p>
   <p>Start Date</p>
   <div class="container">
-    <input matInput [matDatepicker]="startPicker" placeholder="Start date"
+    <input matInput [matDatepicker]="startPicker" placeholder="Start date" [min]="minDate" [(ngModel)]="start"
                  (dateInput)="inputStartDate($event)" (dateChange)="changeStartDate($event)">
     <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
     <mat-datepicker #startPicker></mat-datepicker>
@@ -10,7 +10,7 @@
   <br>
   <p>End Date</p>
   <div class="container">
-    <input matInput [matDatepicker]="endPicker" placeholder="End date"
+    <input matInput [matDatepicker]="endPicker" placeholder="End date" [min]="minEndDate" [(ngModel)]="end"
            (dateInput)="inputEndDate($event)" (dateChange)="changeEndDate($event)">
     <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
     <mat-datepicker #endPicker></mat-datepicker>
