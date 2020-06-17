@@ -4,11 +4,13 @@ export class User {
   lastName: string;
   username: string;
   role: string;
+  token: string;
 
   constructor() {
     this.username = '';
     this.firstName = '';
     this.lastName = '';
     this.role = '';
+    this.token = '';
   }
 }

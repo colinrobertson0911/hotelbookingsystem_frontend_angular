@@ -34,13 +34,13 @@ export class AuthenticationService {
     headers.set('Content-Type', 'Application/json');
 
     console.log(JSON.stringify(login));
-    return this._http.post(this.loginUrl, login, {headers : headers})
+    return this._http.post<User>(this.loginUrl, login, {headers : headers})
     .subscribe( resp => {
       console.log(resp);
-      localStorage.setItem('token', resp['jwt']);
-      localStorage.setItem('username', login.username);
-      this.user.username = login.username;
-      localStorage.setItem('user', JSON.stringify(this.user));
+      localStorage.setItem('token', JSON.stringify(resp.token));
+      localStorage.setItem('username', JSON.stringify(resp.username));
+      localStorage.setItem('user', JSON.stringify(resp));
+      this.user = resp;
       console.log(this.user);
       this._router.navigateByUrl(this.return);
     },
