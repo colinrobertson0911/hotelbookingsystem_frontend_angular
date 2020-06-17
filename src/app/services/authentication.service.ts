@@ -37,8 +37,8 @@ export class AuthenticationService {
     return this._http.post<User>(this.loginUrl, login, {headers : headers})
     .subscribe( resp => {
       console.log(resp);
-      localStorage.setItem('token', JSON.stringify(resp.token));
-      localStorage.setItem('username', JSON.stringify(resp.username));
+      localStorage.setItem('token', resp.token);
+      localStorage.setItem('username', resp.username);
       localStorage.setItem('user', JSON.stringify(resp));
       this.user = resp;
       console.log(this.user);

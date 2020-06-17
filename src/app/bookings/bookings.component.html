@@ -27,9 +27,7 @@
         </mat-form-field>
   </div>
   <div *ngIf="hotel.airportTransfers">
-    <mat-checkbox class="example-margin" [(ngModel)]="checked">Airport Transfer?</mat-checkbox>
-    <br>
-    <mat-label>It costs £{{ hotel.transferPrice }}</mat-label>
+    <mat-checkbox class="example-margin" [(ngModel)]="checked">Airport Transfer? (£{{ hotel.transferPrice }})</mat-checkbox>
   </div>
   <div class="container">
       <button class="btn btn-primary" [disabled]="submitted" (click)="createAndSubmitBooking(startDate, endDate)">Submit booking</button>
