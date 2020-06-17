@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BookingService} from '../services/booking.service';
 import {Bookings} from '../models/bookings';
+import {AuthenticationService} from '../services/authentication.service';
 
 @Component({
   selector: 'app-view-bookings',
@@ -11,12 +12,14 @@ export class ViewBookingsComponent implements OnInit {
 
   bookings: Bookings[];
 
-  constructor(private bookingService: BookingService) {}
+  constructor(private bookingService: BookingService, private authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
-    // TODO: dynamically fetch data using logged in user's username.
-    this.bookingService.getCustomerDetails('customer1').subscribe( data => {
-      this.bookings = data.bookings;
+    const username = this.authenticationService.user.username;
+    this.bookingService.getCustomerDetails(username).subscribe( data => {
+      if (data){
+        this.bookings = data.bookings;
+      }
     });
   }
 
