@@ -11,6 +11,7 @@ import { HotelSingleComponent } from './hotel-single/hotel-single.component';
 import { AccountComponent } from './account/account.component';
 import { ViewBookingsComponent} from './view-bookings/view-bookings.component';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
+import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'hotel-single/:{{hotel.hotelId}}', component: HotelSingleComponent},
   { path: 'account', component: AccountComponent, canActivate : [AuthGuard]},
   { path: 'add-hotel', component: AddHotelComponent},
+  { path: 'edit-hotel', component: EditHotelComponent},
   { path: 'hotel-single/:{{hotel.hotelId}}', component: HotelSingleComponent}
 ];
 

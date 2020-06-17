@@ -11,6 +11,8 @@
       <a mat-list-item routerLink="/hotel-list">Hotel List</a>
       <a mat-list-item *ngIf="auth.loggedOn()" routerLink="/view-bookings">Bookings</a>
       <a mat-list-item *ngIf="auth.loggedOn()" routerLink="/account">Account</a>
+      <a mat-list-item *ngIf="auth.loggedOn()" routerLink="/add-hotel">Add Hotel</a>
+      <a mat-list-item *ngIf="auth.loggedOn()" routerLink="/edit-hotel">Edit Hotel</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -34,6 +34,7 @@ import { ViewBookingsComponent } from './view-bookings/view-bookings.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AccountComponent } from './account/account.component';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
+import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AddHotelComponent } from './add-hotel/add-hotel.component';
     HotelSingleComponent,
     ViewBookingsComponent,
     AccountComponent,
-    AddHotelComponent
+    AddHotelComponent,
+    EditHotelComponent
   ],
   imports: [
     BrowserModule,
