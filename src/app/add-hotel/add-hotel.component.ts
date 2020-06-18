@@ -23,6 +23,7 @@ export class AddHotelComponent implements OnInit {
   ngOnInit(): void {
     this.hotelService.getAllRooms().subscribe(data => {
       this.rooms = data as Room[];
+      console.log(this.rooms);
     });
   }
 

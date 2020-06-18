@@ -31,11 +31,12 @@
         <input name="ammenities" required #ammenities="ngModel" class="form-control" 
         type="text" [ngModel]="addHotelForm.ammenities">
     </div>
+    <br>
     <div>
         <label> Room Types: </label>
         <select [(ngModel)]="addHotelForm" multiple>
-            <option *ngFor="let roomType of rooms" [value]="rooms.roomType.value" >
-                {{rooms.roomType}}
+            <option *ngFor="let room of rooms" [value]="room.roomType" >
+                {{room.roomType}}
             </option> 
          </select>
     </div>
