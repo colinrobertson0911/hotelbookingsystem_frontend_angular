@@ -32,6 +32,14 @@
         type="text" [ngModel]="addHotelForm.ammenities">
     </div>
     <div>
+        <label> Room Types: </label>
+        <select [(ngModel)]="addHotelForm" multiple>
+            <option *ngFor="let roomType of rooms" [value]="rooms.roomType.value" >
+                {{rooms.roomType}}
+            </option> 
+         </select>
+    </div>
+    <div>
         <label>Star Rating:</label>
         <input name="starRating" required #starRating="ngModel" class="form-control" 
         type="text" [ngModel]="addHotelForm.starRating">

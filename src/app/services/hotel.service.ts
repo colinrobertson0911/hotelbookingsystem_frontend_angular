@@ -13,11 +13,16 @@ export class HotelService {
   private editHotel = `http://localhost:8088/hotelbookingsystem/hotelOwner/EditHotelSubmit/`;
   private allHotels = 'http://localhost:8088/hotelbookingsystem/admin/AllHotels/';
   private hotelByID = 'http://localhost:8088/hotelbookingsystem/hotel/SeeHotelById/';
+  private allRoomTypes = 'http://localhost:8088/hotelbookingsystem/hotel/AllRooms/';
 
   constructor(private http: HttpClient) { }
 
   getAllHotels(): Observable<any>{
     return this.http.get(this.allHotels);
+  }
+
+  getAllRooms(): Observable<any>{
+    return this.http.get(this.allRoomTypes);
   }
 
   getHotelById(id: string): Observable<any>{
