@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Injectable, NgModule, DoCheck } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Hotel } from '../models/hotel';
 import { StateService } from '../services/state.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { BookingRequest } from '../models/booking-request';
 import { BookingService } from '../services/booking.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {HotelService} from '../services/hotel.service';
 
 @Component({
   selector: 'app-bookings',
@@ -14,13 +14,13 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 
 @Injectable()
-export class BookingsComponent implements OnInit, DoCheck {
+export class BookingsComponent implements OnInit {
 
   bookingRequest = new BookingRequest();
 
   startDate = new Date();
   endDate = new Date();
-  hotel: Hotel;
+  hotel: Hotel = new Hotel();
   checked = false;
   submitted = false;
   response: any;
@@ -31,10 +31,11 @@ export class BookingsComponent implements OnInit, DoCheck {
   end: string;
 
   constructor(private bookingService: BookingService,
-              private http: HttpClient,
+              private hotelService: HotelService,
               private state: StateService,
               private router: Router,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private route: ActivatedRoute) {
 
     const today = new Date();
     const tomorrow = new Date(today);
@@ -46,19 +47,12 @@ export class BookingsComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-    if (!!this.state.data){
-      this.hotel = this.state.data as Hotel;
-    } else if (!!sessionStorage.getItem('current-hotel-booking')){
-      this.hotel = JSON.parse(sessionStorage.getItem('current-hotel-booking')) as Hotel;
-    } else {
-      // needs a better solution, maybe drop down menu at top to pick hotel instead of passing
-      // data through storage and stateService
-      this.router.navigate(['/landing']);
-    }
-  }
-
-  ngDoCheck(){
-    sessionStorage.setItem('current-hotel-booking', JSON.stringify(this.hotel));
+    const id = this.route.snapshot.paramMap.get('id');
+    this.hotelService.getHotelById(id).subscribe( data => {
+      if (data){
+        this.hotel = data;
+      }
+    });
   }
 
   inputStartDate(event){

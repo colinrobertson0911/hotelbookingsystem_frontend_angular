@@ -1,6 +1,7 @@
 import {Component, OnInit, NgModule} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Hotel} from '../models/hotel';
+import {HotelService} from '../services/hotel.service';
 
 
 @Component({
@@ -12,16 +13,12 @@ export class HotelListComponent implements OnInit {
 
   hotels: Hotel[];
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient, private hotelService: HotelService) {}
 
   ngOnInit(): void {
-
-    const backendUrl = 'http://localhost:8088/hotelbookingsystem/admin/AllHotels/';
-    const resp = this.http.get(backendUrl);
-    resp.subscribe(result => this.hotels = result as Hotel[],
-      error => console.log('hotel list GET call failed ', error
-      ));
+    this.hotelService.getAllHotels().subscribe(data => {
+      this.hotels = data as Hotel[];
+    });
   }
 
 }

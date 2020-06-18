@@ -20,10 +20,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'hotel-list', component: HotelListComponent},
   { path: 'hotel/:id', component: HotelSingleComponent},
+  { path: 'hotel/:id/book', component: BookingsComponent, canActivate : [AuthGuard]},
   { path: 'account', component: AccountComponent, canActivate : [AuthGuard]},
   { path: 'add-hotel', component: AddHotelComponent, canActivate : [AuthGuard]},
   { path: 'edit-hotel', component: EditHotelComponent, canActivate : [AuthGuard]},
-  { path: 'bookings', component: BookingsComponent, canActivate : [AuthGuard]},
   { path: 'view-bookings', component: ViewBookingsComponent, canActivate : [AuthGuard]}
 ];
 
