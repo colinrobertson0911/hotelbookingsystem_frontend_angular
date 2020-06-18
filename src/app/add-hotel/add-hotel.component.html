@@ -34,7 +34,7 @@
     <br>
     <div>
         <label> Room Types: </label>
-        <select [(ngModel)]="addHotelForm" multiple>
+        <select [ngModel]="addHotelForm.room" multiple>
             <option *ngFor="let room of rooms" [value]="room.roomType" >
                 {{room.roomType}}
             </option> 

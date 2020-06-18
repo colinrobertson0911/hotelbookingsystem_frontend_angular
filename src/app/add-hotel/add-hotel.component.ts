@@ -12,7 +12,7 @@ import { Room } from '../models/room';
 })
 export class AddHotelComponent implements OnInit {
 
-  addHotelForm = new HotelForm('', '', '','', '', '', 0, false);
+  addHotelForm = new HotelForm('', '', '', '', '', 0, false,[]);
   hotelSubmission;
   rooms : Room[];
 
@@ -30,9 +30,9 @@ export class AddHotelComponent implements OnInit {
   addHotel(hotelForm:NgForm) {
     console.log(this.addHotelForm)
     console.log(JSON.stringify(hotelForm.value))
-    this.hotelSubmission=new HotelForm(hotelForm.value.hotelName,hotelForm.value.address,
-      hotelForm.value.postcode,hotelForm.value.city, hotelForm.value.ammenities, hotelForm.value.roomType, hotelForm.value.starRating,
-      hotelForm.value.airportTransfers)
+    this.hotelSubmission=new HotelForm(hotelForm.value.hotelName, hotelForm.value.address,
+      hotelForm.value.postcode, hotelForm.value.city, hotelForm.value.ammenities, hotelForm.value.starRating,
+      hotelForm.value.airportTransfers, hotelForm.value.room)
       console.log(this.hotelSubmission)
 
     this.hotelService.addHotelSubmit(this.hotelSubmission).subscribe( data => {

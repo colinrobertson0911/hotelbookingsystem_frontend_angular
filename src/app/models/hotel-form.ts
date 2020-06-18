@@ -1,3 +1,5 @@
+import { Room } from './room';
+
 export class HotelForm {
     constructor(
         public hotelName: string,
@@ -5,8 +7,8 @@ export class HotelForm {
         public postcode: string,
         public city: string,
         public ammenities: string,
-        public roomType: string,
         public starRating: number,
-        public airportTransfers: boolean
+        public airportTransfers: boolean,
+        public room: Room[]
     ) {}
 }
