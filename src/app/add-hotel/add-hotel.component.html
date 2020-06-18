@@ -32,6 +32,15 @@
         type="text" [ngModel]="addHotelForm.ammenities">
     </div>
     <div>
+        <label>Star Rating:</label>
+        <input name="starRating" required #starRating="ngModel" class="form-control" 
+        type="text" [ngModel]="addHotelForm.starRating">
+    </div>
+    <div>
+        <label>Airport Transfer:</label>
+        <mat-checkbox name="airportTransfers" [ngModel]="addHotelForm.airportTransfers"></mat-checkbox>
+    </div>
+    <div>
         <button class="btn btn-primary" type="submit">Submit</button>
     </div>
     </form>

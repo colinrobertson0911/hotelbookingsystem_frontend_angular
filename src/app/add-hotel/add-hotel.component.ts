@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AddHotelComponent implements OnInit {
 
-  addHotelForm = new HotelForm('', '', '','', '');
+  addHotelForm = new HotelForm('', '', '','', '', 0, false);
   hotelSubmission;
 
   constructor(private hotelService : HotelService,
@@ -24,7 +24,8 @@ export class AddHotelComponent implements OnInit {
     console.log(this.addHotelForm)
     console.log(JSON.stringify(hotelForm.value))
     this.hotelSubmission=new HotelForm(hotelForm.value.hotelName,hotelForm.value.address,
-      hotelForm.value.postcode,hotelForm.value.city, hotelForm.value.ammenities)
+      hotelForm.value.postcode,hotelForm.value.city, hotelForm.value.ammenities, hotelForm.value.starRating,
+      hotelForm.value.airportTransfers)
       console.log(this.hotelSubmission)
 
     this.hotelService.addHotelSubmit(this.hotelSubmission).subscribe( data => {
