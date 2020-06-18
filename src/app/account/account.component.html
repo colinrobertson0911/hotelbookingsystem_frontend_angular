@@ -8,3 +8,10 @@
   <br>
   Role: {{ authenticationService.user.role }}
 </div>
+<br>
+<br>
+
+<h1>Your Hotels</h1>
+<div class="container">
+    <app-hotel-item *ngFor="let hotel of hotels" [hotel]="hotel"></app-hotel-item>
+</div>

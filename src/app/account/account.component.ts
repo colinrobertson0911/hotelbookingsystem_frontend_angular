@@ -2,6 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import {AuthenticationService} from '../services/authentication.service';
 
+import {HotelOwner} from '../models/hotel-owner';
+import {HotelService} from '../services/hotel.service';
+import { Hotel } from '../models/hotel';
+
+
 
 
 @Component({
@@ -10,11 +15,27 @@ import {AuthenticationService} from '../services/authentication.service';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+  hotelOwner: HotelOwner;
+  hotels: Hotel[];
+  hotel: Hotel;
 
-  constructor(public authenticationService: AuthenticationService) { }
+  constructor(public authenticationService: AuthenticationService, private hotelService: HotelService) { }
 
   ngOnInit(): void {
 
-  }
+    if(this.authenticationService.user.role == "HOTELOWNER"){
+      const hotelOwnerUsername = this.authenticationService.user.username;
+      this.hotelService.getHotelOwnerDetails(hotelOwnerUsername).subscribe ( data => {
+      if(data){
+        this.hotels = data.hotels;
+        console.log(this.hotels);
+      }
+      })
 
+    }
+    // this.hotelOwner.hotels().subscribe(data => {
+    //   this.hotels[hotel] = data as HotelOwner.getHotels;
+    // })
 }
+}
+
