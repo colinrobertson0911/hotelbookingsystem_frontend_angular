@@ -3,7 +3,7 @@
   <p>Start Date</p>
   <div class="container">
     <input matInput [matDatepicker]="startPicker" placeholder="Start date" [min]="minDate" [(ngModel)]="start"
-                 (dateInput)="inputStartDate($event)" (dateChange)="changeStartDate($event)">
+           (dateInput)="inputStartDate($event)" (dateChange)="changeStartDate($event)">
     <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
     <mat-datepicker #startPicker></mat-datepicker>
   </div>
@@ -16,21 +16,24 @@
     <mat-datepicker #endPicker></mat-datepicker>
   </div>
   <div>
-      <p>Room Type</p>
-      <mat-form-field>
-          <mat-label>Room Type</mat-label>
-          <mat-select [(value)]="roomTypeSelected">
-            <mat-option *ngFor="let type of hotel.room" [value]="type.roomType">
-              {{ type.roomType }} - £{{ type.price }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+    <p>Room Type</p>
+    <mat-form-field>
+      <mat-label>Room Type</mat-label>
+      <mat-select [(value)]="roomTypeSelected">
+        <mat-option *ngFor="let type of hotel.room" [value]="type.roomType">
+          {{ type.roomType }} - £{{ type.price }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div *ngIf="hotel.airportTransfers">
-    <mat-checkbox class="example-margin" [(ngModel)]="checked">Airport Transfer? (£{{ hotel.transferPrice }})</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="checked">Airport Transfer? (£{{ hotel.transferPrice }})
+    </mat-checkbox>
   </div>
   <div class="container">
-      <button class="btn btn-primary" [disabled]="submitted" (click)="createAndSubmitBooking(startDate, endDate)">Submit booking</button>
+    <button class="btn btn-primary" [disabled]="submitted" (click)="createAndSubmitBooking(startDate, endDate)">Submit
+      booking
+    </button>
   </div>
   <div *ngIf="response">
     <h2>Total cost is: £{{ response.totalPrice }}</h2>

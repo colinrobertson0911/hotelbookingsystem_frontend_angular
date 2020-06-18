@@ -11,21 +11,27 @@ export class HotelService {
   private submitHotel = `http://localhost:8088/hotelbookingsystem/hotelOwner/AddHotelSubmit`;
   private hotelOwnerDetails = `http://localhost:8088/hotelbookingsystem/admin/SeeHotelOwner/`;
   private editHotel = `http://localhost:8088/hotelbookingsystem/hotelOwner/EditHotelSubmit/`;
-  
+  private allHotels = 'http://localhost:8088/hotelbookingsystem/admin/AllHotels/';
+  private hotelByID = 'http://localhost:8088/hotelbookingsystem/hotel/SeeHotelById/';
+
   constructor(private http: HttpClient) { }
 
-  addHotelSubmit(hotelForm): Observable<any> {
-    
-    return this.http.post(this.submitHotel, hotelForm)
-
+  getAllHotels(): Observable<any>{
+    return this.http.get(this.allHotels);
   }
-  editHotelSubmit (hotelForm): Observable<any> {
-    
-    return this.http.post(this.editHotel, hotelForm)
+
+  getHotelById(id: string): Observable<any>{
+    return this.http.get(this.hotelByID + id);
+  }
+
+  addHotelSubmit(hotelForm): Observable<any> {
+    return this.http.post(this.submitHotel, hotelForm);
+  }
+  editHotelSubmit(hotelForm): Observable<any> {
+    return this.http.post(this.editHotel, hotelForm);
   }
 
   getHotelOwnerDetails(username: string): Observable<any>{
-
      return this.http.get(this.hotelOwnerDetails + username);
   }
 

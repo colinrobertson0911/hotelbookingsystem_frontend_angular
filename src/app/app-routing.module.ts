@@ -15,18 +15,16 @@ import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/landing' , pathMatch: 'full'},
-  { path: 'landing', component: LandingComponent},
+  { path: '', component: LandingComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
   { path: 'hotel-list', component: HotelListComponent},
-  { path: 'bookings', component: BookingsComponent, canActivate : [AuthGuard]},
-  { path: 'view-bookings', component: ViewBookingsComponent, canActivate : [AuthGuard]},
-  { path: 'hotel-single/:{{hotel.hotelId}}', component: HotelSingleComponent},
+  { path: 'hotel/:id', component: HotelSingleComponent},
   { path: 'account', component: AccountComponent, canActivate : [AuthGuard]},
-  { path: 'add-hotel', component: AddHotelComponent},
-  { path: 'edit-hotel', component: EditHotelComponent},
-  { path: 'hotel-single/:{{hotel.hotelId}}', component: HotelSingleComponent}
+  { path: 'add-hotel', component: AddHotelComponent, canActivate : [AuthGuard]},
+  { path: 'edit-hotel', component: EditHotelComponent, canActivate : [AuthGuard]},
+  { path: 'bookings', component: BookingsComponent, canActivate : [AuthGuard]},
+  { path: 'view-bookings', component: ViewBookingsComponent, canActivate : [AuthGuard]}
 ];
 
 @NgModule({

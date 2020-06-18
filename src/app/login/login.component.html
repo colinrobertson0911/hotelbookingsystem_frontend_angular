@@ -1,22 +1,22 @@
 <h1>User Login</h1>
-<div class="container"><form #LoginForm="ngForm" (ngSubmit)="onSubmit(LoginForm)" novalidate>
-
+<div class="container">
+  <form #LoginForm="ngForm" (ngSubmit)="onSubmit(LoginForm)" novalidate>
     <label>Username</label>
-      <input name="username" required #username="ngModel" type="text"
-      class="form-control" [(ngModel)]="login.username">
-
-
+    <input name="username" required #username="ngModel" type="text"
+           class="form-control" [(ngModel)]="login.username" autocomplete="username">
     <label>Password</label>
-      <input name="password" required #password="ngModel" type="text"
-      class="form-control" [(ngModel)]="login.password">
-
-
-  <div><button [disabled]="LoginForm.invalid || username.untouched || password.untouched" class="btn btn-primary" 
-    type="submit">Login</button></div>
-</form></div>
+    <input name="password" required #password="ngModel" type="password"
+           class="form-control" [(ngModel)]="login.password" autocomplete="current-password">
+    <div>
+      <button [disabled]="LoginForm.invalid || username.untouched || password.untouched" class="btn btn-primary"
+              type="submit">Login
+      </button>
+    </div>
+  </form>
+</div>
 <br>
 <div>
   <p>Dont have an account? Sign up here</p>
   <br>
-  <button class="btn btn-primary" routerLink ="/register">Register</button>
-</div>  
+  <button class="btn btn-primary" routerLink="/register">Register</button>
+</div>

@@ -14,12 +14,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EditHotelComponent implements OnInit {
 
-editHotelForm = new HotelForm('', '', '','', '');
-hotel : HotelForm;
+editHotelForm = new HotelForm('', '', '', '', '');
+hotel: HotelForm;
 hotelSubmission;
 
 
-  constructor(private hotelService : HotelService,
+  constructor(private hotelService: HotelService,
               private router: Router,
               private http: HttpClient,
               public authenticationService: AuthenticationService) { }

@@ -11,18 +11,10 @@ import { Router } from '@angular/router';
 
 export class HotelItemComponent implements OnInit {
 
-  @Input() hotel : Hotel;
+  @Input() hotel: Hotel;
 
-  constructor(private stateService : StateService,
-              private router : Router) { }
+  constructor() {}
 
   ngOnInit(): void {
   }
-
-  onClickToPage(id){
-    this.stateService.data = this.hotel as Hotel;
-    this.router.navigate([`/hotel-single/${id}`])
-  }
-
-
 }

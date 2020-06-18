@@ -11,18 +11,12 @@ import { AuthenticationService} from '../services/authentication.service';
 })
 export class MainNavComponent implements OnInit {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
-
   auth: AuthenticationService;
 
   constructor(private breakpointObserver: BreakpointObserver,
               private injector: Injector) {}
 
   ngOnInit(){
-    this.auth = this.injector.get(AuthenticationService)
+    this.auth = this.injector.get(AuthenticationService);
   }
 }

@@ -1,8 +1,8 @@
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Login } from '../models/login';
-import { RegistrationForm } from '../models/registration-form';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Router, ActivatedRoute} from '@angular/router';
+import {Login} from '../models/login';
+import {RegistrationForm} from '../models/registration-form';
 import {User} from '../models/user';
 
 @Injectable({
@@ -17,10 +17,10 @@ export class AuthenticationService {
   userFromStorage: User;
 
 
-  constructor(private _http : HttpClient, private _router : Router, private _route: ActivatedRoute) {
-    this._route.queryParams.subscribe(params => this.return = params['return'] || '/landing');
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => this.return = params.return || '');
     this.userFromStorage = JSON.parse(localStorage.getItem('user'));
-    if (this.userFromStorage){
+    if (this.userFromStorage) {
       this.user = this.userFromStorage;
     } else {
       this.user = new User();
@@ -28,51 +28,45 @@ export class AuthenticationService {
   }
 
 
-  logon(login: Login){
-
-    const headers = new HttpHeaders();
-    headers.set('Content-Type', 'Application/json');
-
-    console.log(JSON.stringify(login));
-    return this._http.post<User>(this.loginUrl, login, {headers : headers})
-    .subscribe( resp => {
-      console.log(resp);
-      localStorage.setItem('token', resp.token);
-      localStorage.setItem('username', resp.username);
-      localStorage.setItem('user', JSON.stringify(resp));
-      this.user = resp;
-      console.log(this.user);
-      this._router.navigateByUrl(this.return);
-    },
-    error => console.log(error));
+  logon(login: Login) {
+    return this.http.post<User>(this.loginUrl, login)
+      .subscribe(resp => {
+          localStorage.setItem('token', resp.token);
+          localStorage.setItem('username', resp.username);
+          localStorage.setItem('user', JSON.stringify(resp));
+          this.user = resp;
+          this.router.navigate([this.return]).catch(error => console.error(error));
+        },
+        error => console.log(error));
   }
 
-  register_new_user(registrationForm : RegistrationForm){
-    return this._http.post<any>(this.registrationUrl, registrationForm)
-    .subscribe(resp => {
-      console.log(resp['jwt']),
-      localStorage.setItem('token', resp['jwt']);
-      this._router.navigate(['/landing']);
-    },
-    error => console.log(error));
-    }
+  register_new_user(registrationForm: RegistrationForm) {
+    return this.http.post<any>(this.registrationUrl, registrationForm)
+      .subscribe(data => {
+          if (data) {
+            this.router.navigate(['/login']).catch(error => console.error(error));
+          }
+        },
+        error => console.log(error));
+  }
 
-    loggedOn(){
-      return !!localStorage.getItem('token');;
-    }
+  loggedOn() {
+    return !!localStorage.getItem('token');
+  }
 
-    logout(){
-      localStorage.removeItem('token');
-      localStorage.removeItem('username');
-      localStorage.removeItem('user');
-      this.user = new User();
-      this._router.navigate['/landing'];
-    }
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('user');
+    this.user = new User();
+    this.router.navigate(['/']).catch(
+      error => console.error(error)
+    );
+  }
 
-    getToken(){
-      return localStorage.getItem('token');
-    }
-
+  getToken() {
+    return localStorage.getItem('token');
+  }
 
 
 }

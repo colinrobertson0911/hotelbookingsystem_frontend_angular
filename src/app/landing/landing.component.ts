@@ -1,76 +1,42 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Hotel } from 'src/app/models/hotel';
-import { Room } from 'src/app/models/room';
-import { StateService } from 'src/app/services/state.service';
-import { Router } from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Hotel} from 'src/app/models/hotel';
+import {Room} from 'src/app/models/room';
+import {HotelService} from '../services/hotel.service';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styles: ['div { padding: 10px; }']
+  styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
 
-  @Input() hotel : Hotel[];
-  @Input() room : Room[];
-  @Input() foundHotel : Hotel[];
+  hotels: Hotel[] = [];
+  foundHotels: Hotel[] = [];
+  searchQuery: string;
 
-  hotels : Hotel[];
-  selectedHotel: Hotel;
-  foundHotels : Hotel[];
-  numberOfHotels =  Hotel.length;
-  searchedQuery = '';
-
-  constructor(private _http : HttpClient, private stateService : StateService
-    ,private router : Router) { }
+  constructor(private hotelService: HotelService) {}
 
   ngOnInit(): void {
-
-    let allHotels = "http://localhost:8088/hotelbookingsystem/admin/AllHotels/";
-    let allHotelsResp = this._http.get(allHotels);
-    allHotelsResp.subscribe(allHotelsResult => this.hotels = allHotelsResult as Hotel[],
-                  error => console.log("hotel list GET call failed ", error))
-
-}
-
-onClickToPage(id){
-  this.stateService.data = this.selectedHotel as Hotel;
-  this.router.navigate([`/hotel-single/${id}`])
-  
-}
-
-
-  saveQuery(event: any) {
-    this.searchedQuery = event.target.value;
+    this.hotelService.getAllHotels().subscribe(allHotelsResult => {
+      this.hotels = allHotelsResult as Hotel[];
+    });
   }
 
-  searchHotels(searchedQuery) {
-    console.log("searched query entered with : ", searchedQuery)
-
-    this.foundHotels = this.hotels.filter(hotel => hotel.city.toLowerCase() === searchedQuery.toLowerCase());
-    console.log("found hotels : ", this.foundHotel)
-    if (this.foundHotels.length == 0) {
-
-      this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase() === searchedQuery.toLowerCase());
-    
+  searchHotels() {
+    const search = this.searchQuery.toLowerCase();
+    this.foundHotels = this.hotels.filter(hotel => {
+      return hotel.city.toLowerCase().includes(search) || hotel.hotelName.toLowerCase().includes(search);
+    });
+    // TODO: Can probably do the second filter inside the first too.
+    if (this.foundHotels.length < 1){
+      this.foundHotels = this.hotels.filter(hotel => {
+        for (const room of hotel.room){
+          if (room.roomType.toLowerCase().includes(search)){
+            return hotel;
+          }
+        }
+      });
     }
-
-    if(this.foundHotels.length == 0) {
-      this.foundHotels = this.hotels.filter(hotel => hotel.hotelName.toLowerCase().includes(searchedQuery.toLowerCase()));
-    }
-    if (this.foundHotels.length == 0) {
-      console.log("room type : ", searchedQuery.toString())
-      let searchByRoomType = `http://localhost:8088/hotelbookingsystem/hotel/SearchByRoomType/${searchedQuery.toUpperCase()}`;
-      let searchByRoomTypeResp = this._http.get(searchByRoomType);
-      searchByRoomTypeResp.subscribe(searchByRoomTypeResult => (this.foundHotels = searchByRoomTypeResult as Hotel[], 
-                                                                console.log("result : ",searchByRoomTypeResult)),
-                                     error => console.log("error with room type GET request,", error))
-
-    }
-
-
-    // return this.foundHotels;
-
   }
 }

@@ -13,26 +13,26 @@ export class RegisterComponent implements OnInit {
   registrationForm = new RegistrationForm('', '', '');
   userSubmission;
 
-  constructor(private _auth : AuthenticationService) { }
+  constructor(private auth : AuthenticationService) { }
 
 
   ngOnInit(): void {
 
   }
 
-  onSubmit(userForm:NgForm){
-  
-    console.log(this.registrationForm)
-    console.log(JSON.stringify(userForm.value))
+  onSubmit(userForm: NgForm){
+
+    console.log(this.registrationForm);
+    console.log(JSON.stringify(userForm.value));
     this.userSubmission = new RegistrationForm(userForm.value.username, userForm.value.email,
-       userForm.value.password)
-    console.log(this.userSubmission)
+       userForm.value.password);
+    console.log(this.userSubmission);
 
-    
-    //the below only works on my (simon's) setup using a node server to act as a fake
-    //back end 
 
-    this._auth.register_new_user(this.userSubmission)
+    // the below only works on my (simon's) setup using a node server to act as a fake
+    // back end
+
+    this.auth.register_new_user(this.userSubmission);
 
   }
 

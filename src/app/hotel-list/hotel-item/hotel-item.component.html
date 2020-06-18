@@ -1,14 +1,14 @@
 <div class="container">
-<h2> 
-<a class="nav-link" routerLink="/hotel-single/{{hotel.hotelId}}" (click)="onClickToPage(hotel.hotelId)">{{hotel.hotelName}}</a>
-</h2>
-<div>  
-<ul> 
-    <li> Rooms Available: {{ hotel.numOfRooms }} </li>
-    <li> Address : {{ hotel.address }} </li>
-    <li> Rating : {{ hotel.starRating }} </li> 
-</ul>
-</div>
+  <h2>
+    <a class="nav-link" routerLink="/hotel/{{hotel.hotelId}}">{{hotel.hotelName}}</a>
+  </h2>
+  <div>
+    <ul>
+      <li> Rooms Available: {{ hotel.numOfRooms }} </li>
+      <li> Address : {{ hotel.address }} </li>
+      <li> Rating : {{ hotel.starRating }} </li>
+    </ul>
+  </div>
 </div>
 
 

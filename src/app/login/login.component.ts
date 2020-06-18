@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Login } from '../models/login';
-import { NgForm } from '@angular/forms';
-import { AuthenticationService } from '../services/authentication.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Login} from '../models/login';
+import {NgForm} from '@angular/forms';
+import {AuthenticationService} from '../services/authentication.service';
+import {Router, ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -13,25 +13,23 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   login = new Login('', '');
-  user_login;
+  userLogin;
   return = '';
-  route: ActivatedRoute;
 
-  constructor(private _auth : AuthenticationService, private _router: Router,
-    private _route: ActivatedRoute) {  }
-
-  ngOnInit(): void {
-    this._route.queryParams
-      .subscribe(params => this.return = params['return'] || '/landing');
+  constructor(private auth: AuthenticationService, private router: Router,
+              private route: ActivatedRoute) {
   }
 
-  onSubmit(loginForm: NgForm){
-    console.log(JSON.stringify(loginForm.value))
+  ngOnInit(): void {
+    this.route.queryParams
+      .subscribe(params => this.return = params.return || '/');
+  }
 
-    this.user_login = new Login(loginForm.value.username, loginForm.value.password);
-    this._auth.logon(this.user_login)
-    this._router.navigateByUrl(this.return)
-
+  onSubmit(loginForm: NgForm) {
+    console.log(JSON.stringify(loginForm.value));
+    this.userLogin = new Login(loginForm.value.username, loginForm.value.password);
+    this.auth.logon(this.userLogin);
+    this.router.navigate([this.return]).catch(error => console.error(error));
   }
 
 }
