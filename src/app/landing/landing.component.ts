@@ -13,7 +13,7 @@ export class LandingComponent implements OnInit {
 
   hotels: Hotel[] = [];
   foundHotels: Hotel[] = [];
-  searchQuery: string;
+  searchQuery = '';
 
   constructor(private hotelService: HotelService) {}
 

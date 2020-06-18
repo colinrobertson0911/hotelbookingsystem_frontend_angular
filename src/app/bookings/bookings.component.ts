@@ -61,7 +61,7 @@ export class BookingsComponent implements OnInit {
   }
   changeStartDate(event){
     this.startDate = event.target.value;
-    this.minEndDate = this.startDate;
+    this.minEndDate.setDate(this.startDate.getDate() + 1);
   }
 
   inputEndDate(event){
