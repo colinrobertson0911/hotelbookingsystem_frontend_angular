@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EditHotelComponent implements OnInit {
 
-editHotelForm = new HotelForm('', '', '', '', '');
+editHotelForm = new HotelForm('', '', '', '', '', 0, false);
 hotel: HotelForm;
 hotelSubmission;
 

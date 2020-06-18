@@ -4,6 +4,8 @@ export class HotelForm {
         public address: string,
         public postcode: string,
         public city: string,
-        public ammenities: string
+        public ammenities: string,
+        public starRating: number,
+        public airportTransfers: boolean
     ) {}
 }
