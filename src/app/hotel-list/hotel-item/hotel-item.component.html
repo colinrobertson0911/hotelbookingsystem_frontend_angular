@@ -6,7 +6,10 @@
     <li> Rooms Available: {{ hotel.numOfRooms }} </li>
     <li> Address : {{ hotel.address }} </li>
     <li> Rating : {{ hotel.starRating }} </li>
-    <button *ngIf="authenticationService.hasRole('hotelOwner')" class="btn btn-primary">Edit</button>
+    <div *ngIf="authenticationService.hasRole('hotelOwner'); else noButton">
+      <button class="btn btn-primary">Edit</button> 
+    </div>
+    <ng-template #noButton></ng-template>
   </ul>
 </div>
 

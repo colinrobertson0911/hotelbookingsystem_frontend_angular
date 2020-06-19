@@ -10,7 +10,7 @@
       <a mat-list-item *ngIf="auth.hasRole('customer')" routerLink="/view-bookings">Bookings</a>
       <a mat-list-item *ngIf="auth.loggedOn()" routerLink="/account">Account</a>
       <a mat-list-item *ngIf="auth.hasRole('hotelOwner')" routerLink="/add-hotel">Add Hotel</a>
-      <a mat-list-item *ngIf="auth.hasRole('hotelOwner')" routerLink="/edit-hotel">Edit Hotel</a>
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
