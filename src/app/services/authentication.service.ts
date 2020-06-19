@@ -33,7 +33,6 @@ export class AuthenticationService {
 
   hasRole(role: string): boolean{
     role = role.toUpperCase();
-    console.log(this.roles);
     for (const roleName of this.roles){
       if (role === roleName){
         return true;

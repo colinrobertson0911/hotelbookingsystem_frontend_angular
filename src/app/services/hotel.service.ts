@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {Hotel} from '../models/hotel';
 
 
 @Injectable({
@@ -29,11 +30,11 @@ export class HotelService {
     return this.http.get(this.hotelByID + id);
   }
 
-  addHotelSubmit(hotelForm): Observable<any> {
+  addHotelSubmit(hotelForm: Hotel): Observable<any> {
     return this.http.post(this.submitHotel, hotelForm);
   }
-  editHotelSubmit(hotelForm): Observable<any> {
-    return this.http.post(this.editHotel, hotelForm);
+  editHotelSubmit(hotelForm: Hotel): Observable<any> {
+    return this.http.put(this.editHotel, hotelForm);
   }
 
   getHotelOwnerDetails(username: string): Observable<any>{

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelService } from '../services/hotel.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Room } from '../models/room';
 import { Hotel } from '../models/hotel';
 
@@ -15,22 +15,23 @@ export class EditHotelComponent implements OnInit {
   rooms: Room[];
   editHotelForm = new Hotel();
 
-
   constructor(private hotelService: HotelService,
-    private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const hotelId = this.route.snapshot.paramMap.get('id');
     this.hotelService.getAllRooms().subscribe(data => {
       this.rooms = data as Room[];
     });
-
+    this.hotelService.getHotelById(hotelId).subscribe(data => {
+      this.editHotelForm = data as Hotel;
+    });
   }
 
   editHotel() {
     this.hotelService.editHotelSubmit(this.editHotelForm).subscribe(data => {
-      if (data) {
-        this.router.navigate(['/hotel-list']);
-      }
+      this.router.navigate(['/account']);
     });
   }
 }

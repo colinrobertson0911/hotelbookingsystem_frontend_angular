@@ -7,7 +7,7 @@
     <li> Address : {{ hotel.address }} </li>
     <li> Rating : {{ hotel.starRating }} </li>
     <div *ngIf="authenticationService.hasRole('hotelOwner'); else noButton">
-      <button class="btn btn-primary">Edit</button> 
+      <button class="btn btn-primary" routerLink="/edit-hotel/{{ hotel.hotelId }}">Edit</button>
     </div>
     <ng-template #noButton></ng-template>
   </ul>
