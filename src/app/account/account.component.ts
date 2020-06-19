@@ -15,7 +15,6 @@ import { Hotel } from '../models/hotel';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  hotelOwner: HotelOwner;
   hotels: Hotel[];
   hotel: Hotel;
 
@@ -23,19 +22,16 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.authenticationService.user.role == "HOTELOWNER"){
+    if (this.authenticationService.hasRole('HOTELOWNER')){
       const hotelOwnerUsername = this.authenticationService.user.username;
       this.hotelService.getHotelOwnerDetails(hotelOwnerUsername).subscribe ( data => {
-      if(data){
+      if (data){
         this.hotels = data.hotels;
         console.log(this.hotels);
       }
-      })
+      });
 
     }
-    // this.hotelOwner.hotels().subscribe(data => {
-    //   this.hotels[hotel] = data as HotelOwner.getHotels;
-    // })
 }
 }
 
