@@ -32,8 +32,8 @@ export class HotelService {
   addHotelSubmit(hotelForm): Observable<any> {
     return this.http.post(this.submitHotel, hotelForm);
   }
-  editHotelSubmit(hotelForm, username): Observable<any> {
-    return this.http.post(this.editHotel + username, hotelForm);
+  editHotelSubmit(hotelForm): Observable<any> {
+    return this.http.post(this.editHotel, hotelForm);
   }
 
   getHotelOwnerDetails(username: string): Observable<any>{

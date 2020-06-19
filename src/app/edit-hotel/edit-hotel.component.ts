@@ -3,7 +3,6 @@ import { HotelService } from '../services/hotel.service';
 import { Router } from '@angular/router';
 import { Room } from '../models/room';
 import { Hotel } from '../models/hotel';
-import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-edit-hotel',
@@ -15,12 +14,10 @@ export class EditHotelComponent implements OnInit {
 
   rooms: Room[];
   editHotelForm = new Hotel();
-  hotelOwnerUsername = this.authenticationService.user.username;
 
 
   constructor(private hotelService: HotelService,
-    private router: Router,
-    private authenticationService: AuthenticationService) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.hotelService.getAllRooms().subscribe(data => {
@@ -30,7 +27,7 @@ export class EditHotelComponent implements OnInit {
   }
 
   editHotel() {
-    this.hotelService.editHotelSubmit(this.editHotelForm, this.hotelOwnerUsername).subscribe(data => {
+    this.hotelService.editHotelSubmit(this.editHotelForm).subscribe(data => {
       if (data) {
         this.router.navigate(['/hotel-list']);
       }
