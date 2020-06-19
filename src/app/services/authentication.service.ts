@@ -17,10 +17,13 @@ export class AuthenticationService {
   userFromStorage: User;
   roles: string[] = [];
 
-
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => this.return = params.return || '');
     this.userFromStorage = JSON.parse(localStorage.getItem('user'));
+    this.roles = JSON.parse(localStorage.getItem('roles'));
+    if (!this.roles){
+      this.roles = [];
+    }
     if (this.userFromStorage) {
       this.user = this.userFromStorage;
     } else {
@@ -28,6 +31,16 @@ export class AuthenticationService {
     }
   }
 
+  hasRole(role: string): boolean{
+    role = role.toUpperCase();
+    console.log(this.roles);
+    for (const roleName of this.roles){
+      if (role === roleName){
+        return true;
+      }
+    }
+    return false;
+  }
 
   logon(login: Login) {
     return this.http.post<User>(this.loginUrl, login)
@@ -36,6 +49,9 @@ export class AuthenticationService {
           localStorage.setItem('username', resp.username);
           localStorage.setItem('user', JSON.stringify(resp));
           this.user = resp;
+          // TODO: Loop through all roles once backend is capable.
+          this.roles.push(resp.role);
+          localStorage.setItem('roles', JSON.stringify(this.roles));
           this.router.navigate([this.return]).catch(error => console.error(error));
         },
         error => console.log(error));
@@ -59,7 +75,9 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('user');
+    localStorage.removeItem('roles');
     this.user = new User();
+    this.roles = [];
     this.router.navigate(['/']).catch(
       error => console.error(error)
     );

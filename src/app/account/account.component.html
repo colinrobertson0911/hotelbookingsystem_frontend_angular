@@ -9,9 +9,7 @@
   Role: {{ authenticationService.user.role }}
 </div>
 <br>
-<br>
-
-<h1>Your Hotels</h1>
-<div class="container">
+<div *ngIf="authenticationService.hasRole('hotelOwner')">
+  <h2>Your Hotels</h2>
     <app-hotel-item *ngFor="let hotel of hotels" [hotel]="hotel"></app-hotel-item>
 </div>

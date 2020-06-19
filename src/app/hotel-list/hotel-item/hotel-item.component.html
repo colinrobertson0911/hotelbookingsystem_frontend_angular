@@ -6,6 +6,7 @@
     <li> Rooms Available: {{ hotel.numOfRooms }} </li>
     <li> Address : {{ hotel.address }} </li>
     <li> Rating : {{ hotel.starRating }} </li>
+    <button *ngIf="authenticationService.hasRole('hotelOwner')" class="btn btn-primary">Edit</button>
   </ul>
 </div>
 
