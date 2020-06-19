@@ -25,7 +25,9 @@
       <span>HotelBooking.com</span>
       <div *ngIf="auth.loggedOn()" class="username">User: {{ auth.user.username }}</div>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <div class="margins">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

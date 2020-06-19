@@ -1,30 +1,31 @@
 <h1>User Register</h1>
 
-
-<div class="container">
-  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
-  <div>
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+  <mat-form-field>
     <label>Name</label>
-    <input name="username" required #username="ngModel" [class.is-invalid]="username.invalid && username.touched"
-    class="form-control" type="text" [ngModel]="registrationForm.username">
-    
+    <input matInput name="username" autocomplete="off" required #username="ngModel"
+           [class.is-invalid]="username.invalid && username.touched"
+           type="text" [ngModel]="registrationForm.username">
     <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required</small>
-  </div>
+  </mat-form-field>
 
-  <div>
-    <label>Email</label>
-    <input name="email" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched"
-    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
-    class="form-control" type="text" [ngModel]= "registrationForm.email">
-  <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
-  </div>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput name="email" autocomplete="off" required #email="ngModel"
+           [class.is-invalid]="email.invalid && email.touched"
+           pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="text" [ngModel]="registrationForm.email">
+    <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
+  </mat-form-field>
 
-  <div>
+  <mat-form-field>
     <label>Password</label>
-    <input name="password" required #password="ngModel" [class.is-invalid]="password.invalid && password.touched"
-    class="form-control" type="text" [ngModel]="registrationForm.password">
-    <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is Required</small> 
-  </div>
+    <input matInput name="password" autocomplete="off" required #password="ngModel"
+           [class.is-invalid]="password.invalid && password.touched"
+           type="password" [ngModel]="registrationForm.password">
+    <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+  </mat-form-field>
 
-
-  <div><button [disabled]="userForm.form.invalid || username.untouched || email.untouched || password.untouched" class="btn btn-primary" type="submit">Register</button></div>
+  <button [disabled]="userForm.form.invalid || username.untouched || email.untouched || password.untouched"
+          class="btn btn-primary" type="submit">Register
+  </button>
+</form>

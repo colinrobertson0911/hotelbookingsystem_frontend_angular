@@ -15,6 +15,7 @@ export class AuthenticationService {
   return = '';
   user: User;
   userFromStorage: User;
+  roles: string[] = [];
 
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {

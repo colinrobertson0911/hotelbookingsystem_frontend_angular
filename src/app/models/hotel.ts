@@ -8,7 +8,7 @@ export class Hotel {
     address: string;
     postcode: string;
     city: string;
-    ammenities: string;
+    amenities: string;
     bookings: Bookings[];
     starRating: number;
     room: Room[];

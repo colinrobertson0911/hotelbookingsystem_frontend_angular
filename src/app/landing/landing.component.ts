@@ -1,7 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
 import {Hotel} from 'src/app/models/hotel';
-import {Room} from 'src/app/models/room';
 import {HotelService} from '../services/hotel.service';
 
 @Component({
