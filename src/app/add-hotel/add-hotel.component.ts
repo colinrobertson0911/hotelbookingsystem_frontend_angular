@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HotelService} from '../services/hotel.service';
+import { HotelService } from '../services/hotel.service';
 import { Router } from '@angular/router';
 import { Room } from '../models/room';
-import {Hotel} from '../models/hotel';
+import { Hotel } from '../models/hotel';
 
 @Component({
   selector: 'app-add-hotel',

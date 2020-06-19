@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HotelForm } from '../models/hotel-form';
-import { NgForm } from '@angular/forms';
 import { HotelService } from '../services/hotel.service';
 import { Router } from '@angular/router';
+import { Room } from '../models/room';
+import { Hotel } from '../models/hotel';
 import { AuthenticationService } from '../services/authentication.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-hotel',
@@ -14,20 +13,27 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EditHotelComponent implements OnInit {
 
-// editHotelForm = new HotelForm('', '', '', '', '', 0, false,[]);
-hotel: HotelForm;
-hotelSubmission;
+  rooms: Room[];
+  editHotelForm = new Hotel();
+  hotelOwnerUsername = this.authenticationService.user.username;
 
 
   constructor(private hotelService: HotelService,
-              private router: Router,
-              private http: HttpClient,
-              public authenticationService: AuthenticationService) { }
+    private router: Router,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.hotelService.getAllRooms().subscribe(data => {
+      this.rooms = data as Room[];
+    });
 
   }
-  editHotel(): void {
 
+  editHotel() {
+    this.hotelService.editHotelSubmit(this.editHotelForm, this.hotelOwnerUsername).subscribe(data => {
+      if (data) {
+        this.router.navigate(['/hotel-list']);
+      }
+    });
   }
 }
