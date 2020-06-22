@@ -12,6 +12,7 @@ import { AccountComponent } from './account/account.component';
 import { ViewBookingsComponent} from './view-bookings/view-bookings.component';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
+import { AddRoomComponent } from './add-room/add-room.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent, canActivate : [AuthGuard]},
   { path: 'add-hotel', component: AddHotelComponent, canActivate : [AuthGuard]},
   { path: 'edit-hotel/:id', component: EditHotelComponent, canActivate : [AuthGuard]},
-  { path: 'view-bookings', component: ViewBookingsComponent, canActivate : [AuthGuard]}
+  { path: 'view-bookings', component: ViewBookingsComponent, canActivate : [AuthGuard]},
+  { path: 'add-room', component: AddRoomComponent, canActivate : [AuthGuard]}
 ];
 
 @NgModule({

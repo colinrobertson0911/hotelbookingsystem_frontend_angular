@@ -36,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AccountComponent } from './account/account.component';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
+import { AddRoomComponent } from './add-room/add-room.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
     ViewBookingsComponent,
     AccountComponent,
     AddHotelComponent,
-    EditHotelComponent
+    EditHotelComponent,
+    AddRoomComponent
   ],
   imports: [
     BrowserModule,
