@@ -100,21 +100,22 @@ export class BookingsComponent implements OnInit {
   }
 
   dateFormatter(month, day, year){
-    const dict = new Map<String, String>();
-    dict['Jan'] = '01'
-    dict['Feb'] = '02'
-    dict['Mar'] = '03'
-    dict['Apr'] = '04'
-    dict['May'] = '05'
-    dict['Jun'] = '06'
-    dict['Jul'] = '07'
-    dict['Aug'] = '08'
-    dict['Sep'] = '09'
-    dict['Oct'] = '10'
-    dict['Nov'] = '11'
-    dict['Dec'] = '12'
+    const dict = new Map<string, string>();
+    dict['Jan'] = '01';
+    dict['Feb'] = '02';
+    dict['Mar'] = '03';
+    dict['Apr'] = '04';
+    dict['May'] = '05';
+    dict['Jun'] = '06';
+    dict['Jul'] = '07';
+    dict['Aug'] = '08';
+    dict['Sep'] = '09';
+    dict['Oct'] = '10';
+    dict['Nov'] = '11';
+    dict['Dec'] = '12';
 
     return (year + '-' + dict[month] + '-' + day);
-}
+  }
+
 
 }

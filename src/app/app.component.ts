@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { PropertyWrite } from '@angular/compiler';
-import { AuthenticationService } from './services/authentication.service';
 
 
 @Component({
@@ -11,7 +9,7 @@ import { AuthenticationService } from './services/authentication.service';
 export class AppComponent {
   title = 'Hotel Booking';
 
-  displayRegister = false
+  displayRegister = false;
 
   onPress() {
     this.displayRegister = true;

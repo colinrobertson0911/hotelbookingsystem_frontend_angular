@@ -1,4 +1,4 @@
-import {Component, OnInit, NgModule} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Hotel} from '../models/hotel';
 import {HotelService} from '../services/hotel.service';

@@ -1,7 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { BreakpointObserver} from '@angular/cdk/layout';
 import { AuthenticationService} from '../services/authentication.service';
 
 @Component({

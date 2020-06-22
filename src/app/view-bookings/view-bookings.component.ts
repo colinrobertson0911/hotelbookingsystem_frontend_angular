@@ -16,6 +16,7 @@ export class ViewBookingsComponent implements OnInit {
 
   ngOnInit(): void {
     const username = this.authenticationService.user.username;
+    console.log(this.authenticationService.user);
     this.bookingService.getCustomerDetails(username).subscribe( data => {
       if (data){
         this.bookings = data.bookings;

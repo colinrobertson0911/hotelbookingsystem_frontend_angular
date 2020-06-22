@@ -4,18 +4,20 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Login} from '../models/login';
 import {RegistrationForm} from '../models/registration-form';
 import {User} from '../models/user';
+import {Role} from '../models/role';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  loginUrl = 'http://localhost:8088/hotelbookingsystem/login/authenticate';
-  registrationUrl = 'http://localhost:8088/hotelbookingsystem/login/RegisterUserSubmit/';
+  loginUrl = 'http://localhost:8088/hotelbookingsystem/login/LoginUser';
+  registrationUrl = 'http://localhost:8088/hotelbookingsystem/login/RegisterUser/';
+  userDetailsUrl = `http://localhost:8088/hotelbookingsystem/login/Details/`;
   return = '';
   user: User;
   userFromStorage: User;
-  roles: string[] = [];
+  roles: Role[] = [];
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => this.return = params.return || '');
@@ -32,9 +34,9 @@ export class AuthenticationService {
   }
 
   hasRole(role: string): boolean{
-    role = role.toUpperCase();
-    for (const roleName of this.roles){
-      if (role === roleName){
+    role = 'ROLE_' + role.toUpperCase();
+    for (const storedRole of this.roles){
+      if (role === storedRole.roleName){
         return true;
       }
     }
@@ -42,18 +44,31 @@ export class AuthenticationService {
   }
 
   logon(login: Login) {
-    return this.http.post<User>(this.loginUrl, login)
+    return this.http.post(this.loginUrl, login, { responseType: 'text' })
       .subscribe(resp => {
-          localStorage.setItem('token', resp.token);
-          localStorage.setItem('username', resp.username);
-          localStorage.setItem('user', JSON.stringify(resp));
-          this.user = resp;
-          // TODO: Loop through all roles once backend is capable.
-          this.roles.push(resp.role);
-          localStorage.setItem('roles', JSON.stringify(this.roles));
-          this.router.navigate([this.return]).catch(error => console.error(error));
+        if (resp){
+          console.log(resp);
+          localStorage.setItem('token', resp);
+          this.setUserDetails(login.username);
+        }
+        this.router.navigate([this.return]).catch(error => console.error(error));
         },
-        error => console.log(error));
+        error => {
+          console.log(error);
+        });
+  }
+
+  setUserDetails(username: string){
+    return this.http.get<User>(this.userDetailsUrl + username).subscribe( data => {
+      console.log(data);
+      localStorage.setItem('username', data.username);
+      localStorage.setItem('user', JSON.stringify(data));
+      this.user = data;
+      for (const role of data.roles){
+        this.roles.push(role);
+      }
+      localStorage.setItem('roles', JSON.stringify(this.roles));
+    });
   }
 
   register_new_user(registrationForm: RegistrationForm) {

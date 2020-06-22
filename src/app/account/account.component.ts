@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 import {AuthenticationService} from '../services/authentication.service';
 
-import {HotelOwner} from '../models/hotel-owner';
 import {HotelService} from '../services/hotel.service';
 import { Hotel } from '../models/hotel';
 

@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginForm: NgForm) {
-    console.log(JSON.stringify(loginForm.value));
     this.userLogin = new Login(loginForm.value.username, loginForm.value.password);
     this.auth.logon(this.userLogin);
     this.router.navigate([this.return]).catch(error => console.error(error));

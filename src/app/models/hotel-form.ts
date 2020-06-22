@@ -1,5 +1,3 @@
-import { Room } from './room';
-
 export class HotelForm {
 
   public hotelName: string;

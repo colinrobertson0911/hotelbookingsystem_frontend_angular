@@ -37,6 +37,7 @@ import { AccountComponent } from './account/account.component';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import { AddRoomComponent } from './add-room/add-room.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -55,28 +56,29 @@ import { AddRoomComponent } from './add-room/add-room.component';
     EditHotelComponent,
     AddRoomComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatProgressSpinnerModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatSnackBarModule,
-    MatInputModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatProgressSpinnerModule,
+        MatNativeDateModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        MatSnackBarModule,
+        MatInputModule,
+        MatChipsModule
+    ],
   providers: [AuthGuard, AuthenticationService,
   {
     provide: HTTP_INTERCEPTORS,

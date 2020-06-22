@@ -12,10 +12,10 @@ export class HotelService {
 
   private submitHotel = `http://localhost:8088/hotelbookingsystem/hotelOwner/AddHotelSubmit`;
   private hotelOwnerDetails = `http://localhost:8088/hotelbookingsystem/admin/SeeHotelOwner/`;
-  private editHotel = `http://localhost:8088/hotelbookingsystem/hotelOwner/EditHotelSubmit/`;
+  private editHotel = `http://localhost:8088/hotelbookingsystem/hotelOwner/EditHotelSubmit`;
   private allHotels = 'http://localhost:8088/hotelbookingsystem/admin/AllHotels';
   private hotelByID = 'http://localhost:8088/hotelbookingsystem/hotel/SeeHotelById/';
-  private allRoomTypes = 'http://localhost:8088/hotelbookingsystem/hotel/AllRooms/';
+  private allRoomTypes = 'http://localhost:8088/hotelbookingsystem/hotel/AllRooms';
   private submitRoom = 'http://localhost:8088/hotelbookingsystem/hotelOwner/AddNewRoomTypeSubmit';
 
   constructor(private http: HttpClient) { }
@@ -44,7 +44,7 @@ export class HotelService {
   }
 
   addRoomSubmit(roomForm: Room): Observable<any> {
-    return this.http.post(this.submitRoom, roomForm)
+    return this.http.post(this.submitRoom, roomForm);
   }
 
 }

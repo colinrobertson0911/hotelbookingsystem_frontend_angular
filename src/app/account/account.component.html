@@ -6,7 +6,12 @@
   <br>
   Last Name: {{ authenticationService.user.lastName }}
   <br>
-  Role: {{ authenticationService.user.role }}
+  Roles:
+  <mat-chip-list>
+    <mat-chip *ngFor="let role of authenticationService.user.roles">
+      {{ role.roleName.replace('ROLE_', '').toLowerCase() }}
+    </mat-chip>
+  </mat-chip-list>
 </div>
 <br>
 <div *ngIf="authenticationService.hasRole('hotelOwner')">
