@@ -44,18 +44,7 @@ export class AuthenticationService {
   }
 
   logon(login: Login) {
-    return this.http.post(this.loginUrl, login, { responseType: 'text' })
-      .subscribe(resp => {
-        if (resp){
-          console.log(resp);
-          localStorage.setItem('token', resp);
-          this.setUserDetails(login.username);
-        }
-        this.router.navigate([this.return]).catch(error => console.error(error));
-        },
-        error => {
-          console.log(error);
-        });
+    return this.http.post(this.loginUrl, login, { responseType: 'text' });
   }
 
   setUserDetails(username: string){
