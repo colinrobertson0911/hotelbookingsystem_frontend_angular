@@ -20,8 +20,8 @@ export class HotelService {
 
   constructor(private http: HttpClient) { }
 
-  getAllHotels(): Observable<any>{
-    return this.http.get(this.allHotels);
+  getAllHotels(page: number, size: number): Observable<any>{
+    return this.http.get(this.allHotels + `?page=${page}&size=${size}`);
   }
 
   getAllRooms(): Observable<any>{
@@ -35,6 +35,7 @@ export class HotelService {
   addHotelSubmit(hotelForm: Hotel): Observable<any> {
     return this.http.post(this.submitHotel, hotelForm);
   }
+
   editHotelSubmit(hotelForm: Hotel): Observable<any> {
     return this.http.put(this.editHotel, hotelForm);
   }

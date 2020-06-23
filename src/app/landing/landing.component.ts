@@ -16,8 +16,8 @@ export class LandingComponent implements OnInit {
   constructor(private hotelService: HotelService) {}
 
   ngOnInit(): void {
-    this.hotelService.getAllHotels().subscribe(allHotelsResult => {
-      this.hotels = allHotelsResult as Hotel[];
+    this.hotelService.getAllHotels(0, 10).subscribe(allHotelsResult => {
+      this.hotels = allHotelsResult.content as Hotel[];
     });
   }
 
