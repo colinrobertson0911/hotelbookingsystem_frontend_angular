@@ -41,6 +41,10 @@ export class EditHotelComponent implements OnInit {
     
   }
 
+  roomComparer(o1: Room, o2: Room): boolean {
+    return o1 && o2 ? o1.roomType === o2.roomType : o2 === o2;
+  }
+
   editHotel() {
     this.editHotelForm.numOfRooms = this.editHotelForm.room.length;
     this.hotelService.editHotelSubmit(this.editHotelForm).subscribe(data => {

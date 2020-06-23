@@ -29,8 +29,8 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label> Room Types:</mat-label>
-    <mat-select [(ngModel)]="editHotelForm.room" name="room" multiple>
-      <mat-option *ngFor="let room of rooms" [value]="room">
+    <mat-select [(ngModel)]="editHotelForm.room" [compareWith]="roomComparer" name="room" multiple>
+      <mat-option *ngFor="let room of rooms" [value]="room" >
         {{room.roomType}}
       </mat-option>
     </mat-select>
