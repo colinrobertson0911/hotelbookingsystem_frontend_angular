@@ -25,6 +25,7 @@ export class AddHotelComponent implements OnInit {
   }
 
   addHotel() {
+    this.addHotelForm.numOfRooms = this.addHotelForm.room.length;
     this.hotelService.addHotelSubmit(this.addHotelForm).subscribe( data => {
       if (data){
         this.router.navigate(['/hotel-list']);
