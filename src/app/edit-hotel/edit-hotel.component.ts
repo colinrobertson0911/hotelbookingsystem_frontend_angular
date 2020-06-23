@@ -42,6 +42,7 @@ export class EditHotelComponent implements OnInit {
   }
 
   editHotel() {
+    this.editHotelForm.numOfRooms = this.editHotelForm.room.length;
     this.hotelService.editHotelSubmit(this.editHotelForm).subscribe(data => {
       this.router.navigate(['/account']);
     });
