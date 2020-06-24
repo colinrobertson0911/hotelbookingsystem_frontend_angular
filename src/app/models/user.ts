@@ -8,6 +8,7 @@ export class User {
   username: string;
   roles: Role[];
   token: string;
+  password: string;
 
   constructor() {
     this.userId = 0;
@@ -16,5 +17,6 @@ export class User {
     this.lastName = '';
     this.roles = [];
     this.token = '';
+    this.password = '';
   }
 }

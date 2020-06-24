@@ -11,6 +11,7 @@ export class UserService {
   private allUsers = `http://localhost:8088/hotelbookingsystem/admin/AllUsers`;
   private UserByUsername = `http://localhost:8088/hotelbookingsystem/admin/SeeHotelOwner/`
   private editUser = `http://localhost:8088/hotelbookingsystem/admin/EditUser`;
+  private allRoles = `http://localhost:8088/hotelbookingsystem/admin/AllRoles`;
 
   constructor(private http: HttpClient) { }
 
@@ -25,4 +26,10 @@ export class UserService {
   editUserSubmit(userForm: User): Observable<any> {
     return this.http.put(this.editUser, userForm);
   }
+
+  getAllRoles(): Observable<any>{
+    return this.http.get(this.allRoles);
+  }
+
 }
+
