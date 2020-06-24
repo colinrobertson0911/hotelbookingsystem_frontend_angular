@@ -11,6 +11,7 @@
       <a mat-list-item *ngIf="auth.loggedOn()" routerLink="/account">Account</a>
       <a mat-list-item *ngIf="auth.hasRole('hotelOwner')" routerLink="/add-hotel">Add Hotel</a>
       <a mat-list-item *ngIf="auth.hasRole('hotelOwner')" routerLink="/add-room">Add Room</a>
+      <a mat-list-item *ngIf="auth.hasRole('admin')" routerLink="/user-list">User List</a>
       
     </mat-nav-list>
   </mat-sidenav>

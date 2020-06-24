@@ -1,0 +1,22 @@
+<h2>Edit User</h2>
+
+<form (ngSubmit)="editUser()">
+    <mat-form-field>
+        <mat-label>Username:</mat-label>
+        <input matInput name="username" required 
+        type="text" [(ngModel)]="editUserForm.username">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>First Name:</mat-label>
+        <input matInput name="firstName" required 
+        type="text" [(ngModel)]="editUserForm.firstName">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Last Name:</mat-label>
+        <input matInput name="lastName" required 
+        type="text" [(ngModel)]="editUserForm.lastName">
+    </mat-form-field>
+    <div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+</form>
