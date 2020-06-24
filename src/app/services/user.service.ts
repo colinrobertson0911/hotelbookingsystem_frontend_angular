@@ -24,7 +24,7 @@ export class UserService {
   }
 
   editUserSubmit(userForm: User): Observable<any> {
-    return this.http.put(this.editUser, userForm);
+    return this.http.patch(this.editUser, userForm);
   }
 
   getAllRoles(): Observable<any>{
