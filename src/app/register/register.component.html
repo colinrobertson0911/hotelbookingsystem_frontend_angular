@@ -2,11 +2,27 @@
 
 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
   <mat-form-field>
-    <label>Name</label>
+    <label>Username</label>
     <input matInput name="username" autocomplete="off" required #username="ngModel"
            [class.is-invalid]="username.invalid && username.touched"
            type="text" [ngModel]="registrationForm.username">
     <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required</small>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>First Name</label>
+    <input matInput name="firstName" autocomplete="off" required #firstName="ngModel"
+           [class.is-invalid]="firstName.invalid && firstName.touched"
+           type="text" [ngModel]="registrationForm.firstName">
+    <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">First Name is required</small>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>Last Name</label>
+    <input matInput name="lastName" autocomplete="off" required #lastName="ngModel"
+           [class.is-invalid]="lastName.invalid && lastName.touched"
+           type="text" [ngModel]="registrationForm.lastName">
+    <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">Last Name is required</small>
   </mat-form-field>
 
   <mat-form-field>

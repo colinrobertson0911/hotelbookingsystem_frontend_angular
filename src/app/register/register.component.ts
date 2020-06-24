@@ -10,7 +10,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class RegisterComponent implements OnInit {
 
-  registrationForm = new RegistrationForm('', '', '');
+  registrationForm = new RegistrationForm('', '', '', '', '');
   userSubmission;
 
   constructor(private auth: AuthenticationService) { }
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
 
     console.log(this.registrationForm);
     console.log(JSON.stringify(userForm.value));
-    this.userSubmission = new RegistrationForm(userForm.value.username, userForm.value.email,
+    this.userSubmission = new RegistrationForm(userForm.value.username, userForm.value.firstName, userForm.value.lastName, userForm.value.email,
        userForm.value.password);
     console.log(this.userSubmission);
 
