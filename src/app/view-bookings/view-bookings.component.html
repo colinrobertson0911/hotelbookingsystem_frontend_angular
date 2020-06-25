@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Bookings list</h2>
-  <div *ngIf="!bookings">
+  <div *ngIf="bookings.length < 1">
     You have no bookings
   </div>
   <div class="booking" *ngFor="let booking of bookings" >
