@@ -26,6 +26,14 @@
   </mat-form-field>
 
   <mat-form-field>
+    <label>Address</label>
+    <input matInput name="address" autocomplete="off" required #address="ngModel"
+           [class.is-invalid]="address.invalid && address.touched"
+           type="text" [ngModel]="registrationForm.address">
+    <small class="text-danger" [class.d-none]="address.valid || address.untouched">Address is required</small>
+  </mat-form-field>
+
+  <mat-form-field>
     <mat-label>Email</mat-label>
     <input matInput name="email" autocomplete="off" required #email="ngModel"
            [class.is-invalid]="email.invalid && email.touched"

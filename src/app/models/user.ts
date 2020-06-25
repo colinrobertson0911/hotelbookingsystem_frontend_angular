@@ -6,15 +6,17 @@ export class User {
   firstName: string;
   lastName: string;
   username: string;
+  address: string;
   roles: Role[];
   token: string;
   password: string;
 
   constructor() {
     this.userId = 0;
-    this.username = '';
     this.firstName = '';
     this.lastName = '';
+    this.username = '';
+    this.address = '';
     this.roles = [];
     this.token = '';
     this.password = '';
