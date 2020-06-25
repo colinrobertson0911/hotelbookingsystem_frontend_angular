@@ -40,6 +40,7 @@ import { AddRoomComponent } from './add-room/add-room.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { ReviewListComponent } from './review-list/review-list.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { UserListComponent } from './user-list/user-list.component';
     EditHotelComponent,
     AddRoomComponent,
     EditUserComponent,
-    UserListComponent
+    UserListComponent,
+    ReviewListComponent
   ],
     imports: [
         BrowserModule,

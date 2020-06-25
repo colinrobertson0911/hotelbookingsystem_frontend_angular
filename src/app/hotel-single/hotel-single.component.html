@@ -5,6 +5,9 @@
   <p>Amenities: {{hotel.amenities}}</p>
   <p>Airport Transfers: {{hotel.airportTransfers}}</p>
   <p>Rating: {{hotel.starRating}}</p>
+  <div>
+  <button class="btn btn-primary" routerLink="/review-list/{{hotel.hotelId}}">Reviews</button>
+</div>
   <div *ngIf="authenticationService.hasRole('customer'); else noButton">
   <button class="btn btn-primary" routerLink="/hotel/{{hotel.hotelId}}/book">Book Now!</button>
   </div>

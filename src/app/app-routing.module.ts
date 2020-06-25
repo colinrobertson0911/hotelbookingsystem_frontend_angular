@@ -15,6 +15,7 @@ import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { ReviewListComponent } from './review-list/review-list.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'view-bookings', component: ViewBookingsComponent, canActivate : [AuthGuard]},
   { path: 'add-room', component: AddRoomComponent, canActivate : [AuthGuard]},
   { path: 'edit-user/:username', component: EditUserComponent, canActivate : [AuthGuard]},
-  { path: 'user-list', component: UserListComponent, canActivate : [AuthGuard]}
+  { path: 'user-list', component: UserListComponent, canActivate : [AuthGuard]},
+  { path: 'review-list/:id', component: ReviewListComponent, canActivate : [AuthGuard]}
 ];
 
 @NgModule({
