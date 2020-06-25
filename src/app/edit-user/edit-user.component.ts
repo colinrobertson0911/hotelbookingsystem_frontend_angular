@@ -13,7 +13,7 @@ import { Role } from '../models/role';
 })
 export class EditUserComponent implements OnInit {
 
-  roles: Role[];
+  allRoles: Role[];
   editUserForm = new User();
 
   constructor(private userService: UserService,
@@ -24,10 +24,10 @@ export class EditUserComponent implements OnInit {
     const userUsername = this.route.snapshot.paramMap.get('username');
     this.userService.getUserByUsername(userUsername).subscribe(data => {
       this.editUserForm = data as User;
-    })
+    });
     this.userService.getAllRoles().subscribe(data => {
-      this.roles = data as Role[];
-    })
+      this.allRoles = data as Role[];
+    });
   }
 
   roleComparer(o1: Role, o2: Role): boolean {
@@ -35,9 +35,9 @@ export class EditUserComponent implements OnInit {
   }
 
    editUser() {
-    this.userService.editUserSubmit(this.editUserForm).subscribe(data=> {
+    this.userService.editUserSubmit(this.editUserForm).subscribe(data => {
       this.router.navigate(['/user-list']);
-    })
+    });
    }
 
 }

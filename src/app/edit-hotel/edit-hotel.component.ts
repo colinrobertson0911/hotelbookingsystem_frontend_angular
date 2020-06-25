@@ -13,10 +13,8 @@ import { Hotel } from '../models/hotel';
 export class EditHotelComponent implements OnInit {
 
   rooms: Room[];
-  
   currentHotel = new Hotel();
   editHotelForm = new Hotel();
-  
 
   constructor(private hotelService: HotelService,
               private router: Router,
@@ -30,15 +28,13 @@ export class EditHotelComponent implements OnInit {
     this.hotelService.getHotelById(hotelId).subscribe(data => {
       this.editHotelForm = data as Hotel;
       this.currentHotel = data as Hotel;
-       for (const room of this.rooms){
+      for (const room of this.rooms){
          if (!this.editHotelForm.room){
           this.editHotelForm.room.push(room);
          }
        }
-      console.log("HOTELFORM: " + this.editHotelForm.room);
+      console.log('HOTELFORM: ' + this.editHotelForm.room);
     });
-   
-    
   }
 
   roomComparer(o1: Room, o2: Room): boolean {
