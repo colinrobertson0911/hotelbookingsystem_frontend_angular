@@ -4,6 +4,7 @@ import {Hotel} from '../models/hotel';
 import {HotelService} from '../services/hotel.service';
 
 
+
 @Component({
   selector: 'app-hotel-list',
   templateUrl: './hotel-list.component.html',

@@ -6,7 +6,7 @@
       <a mat-list-item routerLink="/">Home</a>
       <a mat-list-item *ngIf="!auth.loggedOn()" routerLink="/login">Log in</a>
       <a mat-list-item *ngIf="auth.loggedOn()" (click)="auth.logout()" routerLink="/landing">Logout</a>
-      <a mat-list-item *ngIf="auth.hasRole('customer') || auth.hasRole('admin')" routerLink="/hotel-list">Hotel List</a>
+      <a mat-list-item *ngIf="auth.loggedOn()" routerLink="/hotel-list">Hotel List</a>
       <a mat-list-item *ngIf="auth.hasRole('customer')" routerLink="/view-bookings">Bookings</a>
       <a mat-list-item *ngIf="auth.loggedOn()" routerLink="/account">Account</a>
       <a mat-list-item *ngIf="auth.hasRole('hotelOwner')" routerLink="/add-hotel">Add Hotel</a>
