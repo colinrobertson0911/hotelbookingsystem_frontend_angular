@@ -5,9 +5,6 @@ import {AuthenticationService} from '../services/authentication.service';
 import {HotelService} from '../services/hotel.service';
 import { Hotel } from '../models/hotel';
 
-
-
-
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
