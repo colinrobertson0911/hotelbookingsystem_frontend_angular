@@ -13,5 +13,7 @@
       <li *ngIf="booking.extrasPrice != 0">Extras: {{ booking.extras.toLowerCase() }} @ £{{ booking.extrasPrice }}</li>
     </ul>
     <h3></h3>
+    <button class="btn btn-primary" [routerLink]="['/add-review', booking.bookingId]">Add Review</button>
+    
   </div>
 </div>
