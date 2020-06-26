@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'edit-user/:username', component: EditUserComponent, canActivate : [AuthGuard]},
   { path: 'user-list', component: UserListComponent, canActivate : [AuthGuard]},
   { path: 'review-list/:id', component: ReviewListComponent, canActivate : [AuthGuard]},
-  { path: 'add-review/:bookingId', component: AddReviewComponent, canActivate : [AuthGuard]}
+  { path: 'add-review/:hotel/:bookingId', component: AddReviewComponent, canActivate : [AuthGuard]}
 ];
 
 @NgModule({

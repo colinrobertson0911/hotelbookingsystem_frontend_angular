@@ -55,6 +55,9 @@ export class BookingsComponent implements OnInit {
     });
   }
 
+  onChange(){
+    console.log('change?');
+  }
   inputStartDate(event){
     this.startDate = event.target.value;
 

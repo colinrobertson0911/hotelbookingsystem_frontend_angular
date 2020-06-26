@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Bookings } from '../models/bookings';
-import { BookingService } from '../services/booking.service';
+import {Component, OnInit} from '@angular/core';
+import {Bookings} from '../models/bookings';
+import {BookingService} from '../services/booking.service';
 
-import { ReviewService } from '../services/review.service';
-import { HotelService } from '../services/hotel.service';
+import {ReviewService} from '../services/review.service';
+import {HotelService} from '../services/hotel.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import { Review } from '../models/review';
-
-
+import {Review} from '../models/review';
+import {Hotel} from '../models/hotel';
+import {AuthenticationService} from '../services/authentication.service';
 
 @Component({
   selector: 'app-add-review',
@@ -18,23 +18,34 @@ export class AddReviewComponent implements OnInit {
 
   addReviewForm = new Review();
   currentBooking = new Bookings();
+  hotel: Hotel;
 
-  constructor(private hotelService: HotelService,
-    private router: Router,private route: ActivatedRoute, private bookingService: BookingService, private reviewService: ReviewService) { }
+  constructor(private hotelService: HotelService, private authenticationService: AuthenticationService,
+              private router: Router, private route: ActivatedRoute,
+              private bookingService: BookingService, private reviewService: ReviewService) {
+  }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('bookingId');
+    const bookingId = this.route.snapshot.paramMap.get('bookingId');
+    const hotel = this.route.snapshot.paramMap.get('hotel');
 
-    this.reviewService.getBookingById(id).subscribe( data => {
+    this.reviewService.getBookingById(bookingId).subscribe(data => {
       this.currentBooking = data as Bookings;
       console.log(this.currentBooking);
-      console.log(this.addReviewForm);
-    })
+    });
+    this.hotelService.getHotelByName(hotel).subscribe(data => {
+      this.hotel = data;
+      console.log(this.hotel);
+    });
   }
+
   addReview() {
-    this.reviewService.submitReviewRequest(this.addReviewForm).subscribe( data => {
-      if (data){
-        this.router.navigate(['/view-bookings']);
+    this.addReviewForm.hotel = this.hotel;
+    this.addReviewForm.customer = this.authenticationService.user;
+    console.log(this.addReviewForm);
+    this.reviewService.submitReviewRequest(this.addReviewForm, this.hotel.hotelId).subscribe(data => {
+      if (data) {
+        this.router.navigate(['/review-list/' + this.hotel.hotelId]);
       }
     });
   }

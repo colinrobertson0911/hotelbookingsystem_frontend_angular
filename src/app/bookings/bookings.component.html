@@ -1,5 +1,5 @@
 <p>{{hotel.hotelName}}</p>
-<div class="form">
+<div class="form" (change)="onChange">
   <mat-form-field>
     <mat-label>Start Date</mat-label>
     <input matInput [matDatepicker]="startPicker" placeholder="Start date" [min]="minDate" [(ngModel)]="start"

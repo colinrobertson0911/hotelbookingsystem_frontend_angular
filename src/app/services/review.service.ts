@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {User} from '../models/user';
 
 @Injectable({
     providedIn: 'root'
@@ -9,15 +8,13 @@ import {User} from '../models/user';
 
   export class ReviewService {
 
-    private submitReview = `http://localhost:8088/hotelbookingsystem/review/ReviewSubmit`;
+    private submitReview = `http://localhost:8088/hotelbookingsystem/reviews/createReview`;
     private bookingByID = 'http://localhost:8088/hotelbookingsystem/booking/BookingConfirmation/';
-
-
 
     constructor(private http: HttpClient) { }
 
-    submitReviewRequest(reviewRequest): Observable<any>{
-       return this.http.post(this.submitReview, reviewRequest);
+    submitReviewRequest(reviewRequest, hotelId: number): Observable<any>{
+       return this.http.post(this.submitReview + '?hotelId=' + hotelId, reviewRequest);
     }
 
     getBookingById(id: string): Observable<any>{

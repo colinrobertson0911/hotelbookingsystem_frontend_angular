@@ -18,6 +18,7 @@ export class HotelService {
   private allRoomTypes = 'http://localhost:8088/hotelbookingsystem/hotel/AllRooms';
   private submitRoom = 'http://localhost:8088/hotelbookingsystem/hotelOwner/AddNewRoomTypeSubmit';
   private allReviews = 'http://localhost:8088/hotelbookingsystem/reviews/allReviews/';
+  private hotelByName = 'http://localhost:8088/hotelbookingsystem/hotel/SeeHotel/';
 
   constructor(private http: HttpClient) { }
 
@@ -31,6 +32,10 @@ export class HotelService {
 
   getHotelById(id: string): Observable<any>{
     return this.http.get(this.hotelByID + id);
+  }
+
+  getHotelByName(id: string): Observable<any>{
+    return this.http.get(this.hotelByName + id);
   }
 
   addHotelSubmit(hotelForm: Hotel): Observable<any> {

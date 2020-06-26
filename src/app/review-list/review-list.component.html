@@ -3,9 +3,11 @@
 <div *ngIf="!reviews">
     <p>There are no reviews</p>
 </div>
-
+<h2>Reviews for {{ hotel.hotelName }}</h2>
 <div class="reviews" *ngFor="let review of reviews">
-    <p>Customer: {{review.customer.username}}</p>
-    <p>Score: {{review.score}}</p>
-    <p>Message: {{review.message}}</p>
+  <br>
+  <p>By {{review.customer.username}}</p>
+  <p>Score: <b>{{review.score}}</b></p>
+  <p>Message: <i>{{review.message}}</i></p>
+  <br>
 </div>
