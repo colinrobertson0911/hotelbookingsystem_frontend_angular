@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Hotel } from 'src/app/models/hotel';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
@@ -13,7 +13,9 @@ export class HotelSingleComponent implements OnInit {
 
   hotel: Hotel = new Hotel();
 
-  constructor(private router: Router, private route: ActivatedRoute, private hotelService: HotelService,public authenticationService: AuthenticationService) {}
+  constructor(private router: Router, private route: ActivatedRoute,
+              private hotelService: HotelService,
+              public authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

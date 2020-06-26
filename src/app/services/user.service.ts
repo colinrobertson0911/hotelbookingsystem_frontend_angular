@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
+import {Role} from '../models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { User } from '../models/user';
 export class UserService {
 
   private allUsers = `http://localhost:8088/hotelbookingsystem/admin/AllUsers`;
-  private UserByUsername = `http://localhost:8088/hotelbookingsystem/admin/SeeHotelOwner/`
+  private UserByUsername = `http://localhost:8088/hotelbookingsystem/admin/SeeHotelOwner/`;
   private editUser = `http://localhost:8088/hotelbookingsystem/admin/EditUser`;
   private allRoles = `http://localhost:8088/hotelbookingsystem/admin/AllRoles`;
 

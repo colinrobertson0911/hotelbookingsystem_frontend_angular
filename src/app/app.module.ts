@@ -42,6 +42,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ReviewListComponent } from './review-list/review-list.component';
 import { AddReviewComponent } from './add-review/add-review.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { AddReviewComponent } from './add-review/add-review.component';
         MatCheckboxModule,
         MatSnackBarModule,
         MatInputModule,
-        MatChipsModule
+        MatChipsModule,
+        MatPaginatorModule
     ],
   providers: [AuthGuard, AuthenticationService,
   {
