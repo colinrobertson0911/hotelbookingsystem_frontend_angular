@@ -4,14 +4,15 @@
   <p>Rooms Available: {{hotel.numOfRooms}}</p>
   <p>Amenities: {{hotel.amenities}}</p>
   <p>Airport Transfers: {{hotel.airportTransfers}}</p>
-  <p>Rating: {{hotel.starRating}}</p>
+  <p>Rating: <b>{{ hotel.averageHotelScore }}</b> after {{ hotel.reviews.length }}
+    review{{hotel.reviews.length > 1 ? 's' : '' }}</p>
   <div>
-  <button class="btn btn-primary" routerLink="/review-list/{{hotel.hotelId}}">Reviews</button>
-</div>
-  <div *ngIf="authenticationService.hasRole('customer'); else noButton">
-  <button class="btn btn-primary" routerLink="/hotel/{{hotel.hotelId}}/book">Book Now!</button>
+    <button class="btn btn-primary" routerLink="/review-list/{{hotel.hotelId}}">Reviews</button>
   </div>
-  <ng-template #noButton></ng-template>
+  <br>
+  <div *ngIf="authenticationService.hasRole('customer')">
+    <button class="btn btn-primary" routerLink="/hotel/{{hotel.hotelId}}/book">Book Now!</button>
+  </div>
 </div>
 
 

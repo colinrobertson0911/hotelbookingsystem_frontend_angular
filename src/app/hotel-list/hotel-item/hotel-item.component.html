@@ -4,8 +4,8 @@
 <div>
   <ul>
     <li> Rooms Available: {{ hotel.numOfRooms }} </li>
-    <li> Address : {{ hotel.address }} </li>
-    <li> Rating : {{ hotel.starRating }} </li>
+    <li> Address: {{ hotel.address }} </li>
+    <li> Rating: <b>{{ hotel.averageHotelScore }}</b> after {{ hotel.reviews.length }} review{{hotel.reviews.length > 1 ? 's' : '' }}</li>
     <div *ngIf="authenticationService.hasRole('hotelOwner'); else noButton">
       <button class="btn btn-primary" routerLink="/edit-hotel/{{ hotel.hotelId }}">Edit</button>
     </div>

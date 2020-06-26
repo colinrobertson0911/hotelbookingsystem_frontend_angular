@@ -1,5 +1,6 @@
 import { Bookings } from './bookings';
 import { Room } from './room';
+import {Review} from './review';
 
 export class Hotel {
     hotelId: number;
@@ -15,6 +16,8 @@ export class Hotel {
     airportTransfers: boolean;
     transferPrice: number;
     verified: boolean;
+    averageHotelScore: number;
+    reviews: Review[];
 
 }
 

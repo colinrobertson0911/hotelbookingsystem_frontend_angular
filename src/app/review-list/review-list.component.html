@@ -4,6 +4,7 @@
     <p>There are no reviews</p>
 </div>
 <h2>Reviews for {{ hotel.hotelName }}</h2>
+<h3>Average review: {{ hotel.averageHotelScore }}</h3>
 <div class="reviews" *ngFor="let review of reviews">
   <br>
   <p>By {{review.customer.username}}</p>

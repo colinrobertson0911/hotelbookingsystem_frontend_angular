@@ -22,10 +22,7 @@ export class ReviewListComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.hotelService.getHotelById(id).subscribe(data => {
       this.hotel = data as Hotel;
-    });
-    this.hotelService.getAllReviews(id).subscribe(data => {
-      this.reviews = data as Review[];
+      this.reviews = data.reviews as Review[];
     });
   }
-
 }
