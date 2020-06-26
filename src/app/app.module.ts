@@ -41,6 +41,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ReviewListComponent } from './review-list/review-list.component';
+import { AddReviewComponent } from './add-review/add-review.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ReviewListComponent } from './review-list/review-list.component';
     AddRoomComponent,
     EditUserComponent,
     UserListComponent,
-    ReviewListComponent
+    ReviewListComponent,
+    AddReviewComponent
   ],
     imports: [
         BrowserModule,

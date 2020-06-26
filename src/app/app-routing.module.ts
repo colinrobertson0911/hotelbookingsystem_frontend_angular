@@ -16,6 +16,7 @@ import { AddRoomComponent } from './add-room/add-room.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ReviewListComponent } from './review-list/review-list.component';
+import { AddReviewComponent } from './add-review/add-review.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'add-room', component: AddRoomComponent, canActivate : [AuthGuard]},
   { path: 'edit-user/:username', component: EditUserComponent, canActivate : [AuthGuard]},
   { path: 'user-list', component: UserListComponent, canActivate : [AuthGuard]},
-  { path: 'review-list/:id', component: ReviewListComponent, canActivate : [AuthGuard]}
+  { path: 'review-list/:id', component: ReviewListComponent, canActivate : [AuthGuard]},
+  { path: 'add-review', component: AddReviewComponent, canActivate : [AuthGuard]}
 ];
 
 @NgModule({
